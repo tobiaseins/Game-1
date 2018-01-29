@@ -16,7 +16,7 @@ protected int modus;
 
 
 public void bewegen() {
-	
+	k
 }
 
 
