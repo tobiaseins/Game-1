@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.*;
 
 import javax.swing.JPanel;
 
@@ -15,8 +14,9 @@ private boolean soundplay;
 protected int modus;
 
 
+
 public void bewegen() {
-	k
+	if(bewegungsrichtung() == 90)//90 rechts 180 unten 270 links 360/0 oben
 }
 
 
