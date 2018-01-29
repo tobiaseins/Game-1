@@ -3,7 +3,8 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-public abstract class Figuren {
+
+public abstract class Figuren extends Fenster{
 private Point position;
 private int geschwindigkeit;
 private int bewegungsrichtung;
