@@ -1,9 +1,10 @@
 
 public class Geister {
 
-		Geister Geist1 = new Geister("Rot", "Position", "Radius");
-		/*Geister Geist2 = new Geister("Gelb", "Position");}*/
-public void Set_position (Position);
+	Geister Geist1 = new Geister("Rot", "Position", "Radius");
+	/*Geister Geist2 = new Geister("Gelb", "Position");}*/
+	
+	public void Set_position (Position);
 	
 	
 
