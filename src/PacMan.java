@@ -10,7 +10,7 @@ public class PacMan extends Figuren{
 	public void set_Winkel_max (int newWinkel_max) {Winkel_max = newWinkel_max;}
 	public void set_leben (int newLeben) {leben = newLeben;}
 	public void set_mund_offen (boolean newMund_offen) {mund_offen = newMund_offen;}
-	public void set_mund_offen (boolean newMund_offen) {mund_offen = newMund_offen;}//Getter- und Settermethoden ende
+	
 	
 	// Leben verlieren Funktion
 }
