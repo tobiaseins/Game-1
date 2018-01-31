@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,6 +24,13 @@ public class Fenster extends JFrame implements KeyListener {
 	protected void paintComponent(Graphics g) {
 		
 	}
+	
+	//Hauptmethode
+    public static void main(String[] args)
+    {
+        //JFrame starten
+		new Fenster();
+    }
 	
 	// auf Tastendrücke reagieren
 	public void keyPressed(KeyEvent e) {
