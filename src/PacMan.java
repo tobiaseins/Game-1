@@ -1,12 +1,24 @@
 
 public class PacMan extends Figuren{
 	
-	public int Winkel_min;
-	public int Winkel_max;
-	public int leben;
-	public boolean mund_offen;
+	private int Winkel_min;
+	private int Winkel_max;
+	private int leben;
+	private boolean mund_offen;
+	private Audio audio_punkt;
+	private Audio audio_sterben;
+	private Audio audio_intro;
 	
 	
+	public PacMan(){
+		this.Winkel_min = 270;
+		this.Winkel_max = 45;
+		this.leben = 3;
+		this.mund_offen = false;
+		this.audio_punkt = new Audio("pacman_punkt");
+		this.audio_sterben = new Audio("pacman_sterben");
+		this.audio_intro = new Audio("pacman_intro");
+	}
 	//Getter- und Settermethoden
 	public int get_Winkel_min () {
 		return Winkel_min;
