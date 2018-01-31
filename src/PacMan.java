@@ -1,10 +1,15 @@
 
+import java.awt.*;
+import javax.swing.*;
+
+
 public class PacMan extends Figuren{
 	
 	public int Winkel_min;
 	public int Winkel_max;
 	public int leben;
 	public boolean mund_offen;
+	public boolean kontakt_mit_geist;
 	
 	
 	//Getter- und Settermethoden
@@ -41,5 +46,12 @@ public class PacMan extends Figuren{
 	}
 	
 	//Getter- und Settermethoden ende
+	//Klasseninterne Methoden
 	
+	public void leben_verlieren () {
+		if(get)
+		
+		
+	}
+
 }
