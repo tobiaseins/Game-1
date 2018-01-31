@@ -15,7 +15,7 @@ public class Fenster extends JFrame implements KeyListener {
 	public Fenster() {
 		setTitle("PacMan");				// Titel setzten
 		addKeyListener(this);			// Füge die Tastenerkennung hinzu
-		setSize(887,340);				// Größe festlegen
+		setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	setVisible(true);				// sichtbar machen
 	}
 	
