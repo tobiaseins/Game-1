@@ -21,7 +21,7 @@ public abstract class Figuren extends JPanel {		// extends Fenster ???
 
 	// Wand vor Figur?
 	public boolean wand_vor_figur() {
-		return false;						// spï¿½ter verbessern
+		return false;						// später verbessern
 	}
 
 	public void bewegen() {
