@@ -1,5 +1,5 @@
 
-public class Geister {
+public class Geister extends Figuren{
 
 	Geister Geist1 = new Geister("Rot", "Position", "Radius");
 	/*Geister Geist2 = new Geister("Gelb", "Position");}*/
