@@ -2,8 +2,7 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-
-public abstract class Figuren {		// extends Fenster ???
+public abstract class Figuren extends JPanel {		// extends Fenster ???
 	private Point position;
 	private int geschwindigkeit;
 	private int bewegungsrichtung;
@@ -22,7 +21,7 @@ public abstract class Figuren {		// extends Fenster ???
 
 	// Wand vor Figur?
 	public boolean wand_vor_figur() {
-		return false;						// später verbessern
+		return false;						// spï¿½ter verbessern
 	}
 
 	public void bewegen() {
@@ -55,4 +54,3 @@ public abstract class Figuren {		// extends Fenster ???
     public void set_xGeschwindigkeit(int xgesch) {this.xGeschwindigkeit = xgesch;}
     public void set_yGeschwindigkeit(int ygesch) {this.yGeschwindigkeit = ygesch;}
 }
-
