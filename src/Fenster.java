@@ -26,11 +26,7 @@ public class Fenster extends JFrame implements KeyListener {
 	}
 	
 	//Hauptmethode
-    public static void main(String[] args)
-    {
-        //JFrame starten
-		new Fenster();
-    }
+    public static void main(String[] args) { new Fenster(); };
 	
 	// auf Tastendrücke reagieren
 	public void keyPressed(KeyEvent e) {
