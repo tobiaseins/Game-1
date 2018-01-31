@@ -25,4 +25,4 @@ public class Geist extends Figuren {
 		if(Quadrant == 3) this.set_bewegungsrichtung(ran.nextInt(2) + 2);
 		if(Quadrant == 4) this.set_bewegungsrichtung(ran.nextInt(2) * 2 + 2);
 	}
-}
+}// BLA
