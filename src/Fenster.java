@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,7 +16,7 @@ public class Fenster extends JFrame implements KeyListener {
 	public Fenster() {
 		setTitle("PacMan");				// Titel setzten
 		addKeyListener(this);			// Füge die Tastenerkennung hinzu
-		setSize(887,340);				// Größe festlegen
+		setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	setVisible(true);				// sichtbar machen
 	}
 	
@@ -23,6 +24,9 @@ public class Fenster extends JFrame implements KeyListener {
 	protected void paintComponent(Graphics g) {
 		
 	}
+	
+	//Hauptmethode
+    public static void main(String[] args) { new Fenster(); };
 	
 	// auf Tastendrücke reagieren
 	public void keyPressed(KeyEvent e) {
