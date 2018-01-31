@@ -1,9 +1,10 @@
 public class PacMan extends Figuren{
-	// Variablen nur fÃ¼r Pacman
+	// Variablen nur für Pacman
 	public int Winkel_min;
 	public int Winkel_max;
 	public int leben;
 	public boolean mund_offen;
+	public boolean kontakt_mit_geist;
 	
 	// Getter- und Settermethoden
 	public int get_Winkel_min () {return Winkel_min;}
@@ -17,4 +18,8 @@ public class PacMan extends Figuren{
 	public void set_mund_offen (boolean newMund_offen) {mund_offen = newMund_offen;}
 	
 	// Leben verlieren Funktion
+	
+	public void leben_verlieren () {
+		
+	}
 }
