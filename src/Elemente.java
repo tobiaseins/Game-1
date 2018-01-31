@@ -7,18 +7,16 @@ import java.awt.Point;
 public class Elemente extends Figuren {
 	
 	public Elemente() {
-		System.out.println("B");
+		
 	}
 	
 	
-		// zeichnen
-		public void paintComponent(Graphics g)
-		{
-		    g.setColor(Color.BLACK); //Schwarzer Hintergrund
-		    g.fillRect(0, 0, getWidth(), getHeight());
-			
-		    repaint();	//alles neu zeichnen
-		    System.out.println("A");
-		}
+	// zeichnen
+	public void paintComponent(Graphics g)
+	{
+	    g.setColor(Color.BLACK); //Schwarzer Hintergrund
+	    g.fillRect(0, 0, getWidth(), getHeight());
 		
+	    repaint();	//alles neu zeichnen
+		}		
 }

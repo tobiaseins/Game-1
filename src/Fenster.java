@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class Fenster extends JFrame implements KeyListener {
 	
-	//Objekt vom Typ Elemente_im_Spiel erzeugen, der von JPanel erbt
+	// Objekt vom Typ Elemente_im_Spiel erzeugen, der von JPanel erbt
 	JPanel elemente = new Elemente();
 	
 	// Variablen
@@ -23,7 +23,7 @@ public class Fenster extends JFrame implements KeyListener {
 		addKeyListener(this);			// Füge die Tastenerkennung hinzu
 		setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	setVisible(true);				// sichtbar machen
-    	add(elemente);					//Füge die Elemente hinzu
+    	add(elemente);					// Füge die Elemente hinzu
 	}
 	
 	//Hauptmethode

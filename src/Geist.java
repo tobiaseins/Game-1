@@ -13,7 +13,7 @@ public class Geist extends Figuren {
 	
 	public void richtungs_update(Point PacPosition) {
 		Random ran = new Random();
-		Point Unterschied = PacPosition - this.getPosition(); 	// auch nicht definiert
+		Point Unterschied = PacPosition - this.get_position(); 	// auch nicht definiert
 		int Quadrant = 0; 										// 1: unten rechts, 2: oben rechts, 3: oben links, 4: unten links
 		if(Unterschied.x > 0 && Unterschied.y > 0) Quadrant = 1;
 		if(Unterschied.x > 0 && Unterschied.y < 0) Quadrant = 2;
