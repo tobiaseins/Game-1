@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -9,6 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Fenster extends JFrame implements KeyListener {
+	
+	// Objekt vom Typ Elemente_im_Spiel erzeugen, der von JPanel erbt
+	JPanel elemente = new Elemente();
+	
 	// Variablen
 	private Point Groesse = new Point(887,340);
 	
@@ -18,11 +23,7 @@ public class Fenster extends JFrame implements KeyListener {
 		addKeyListener(this);			// Füge die Tastenerkennung hinzu
 		setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	setVisible(true);				// sichtbar machen
-	}
-	
-	// zeichnen
-	protected void paintComponent(Graphics g) {
-		
+    	add(elemente);					// Füge die Elemente hinzu
 	}
 	
 	//Hauptmethode
@@ -38,11 +39,11 @@ public class Fenster extends JFrame implements KeyListener {
 	    	case KeyEvent.VK_RIGHT: 	// Vergleich 
 	    		break; 					// Fertig - nicht mehr weitermachen
 	        case KeyEvent.VK_LEFT: 		// Vergleich
-	        	break; 					// Ferig - nicht mehr weitermachen
-	        case KeyEvent.VK_UP: 		// Verlgeich
 	        	break; 					// Fertig - nicht mehr weitermachen
-	        case KeyEvent.VK_DOWN: 		// Verlgeich
-	        	break; 					// Ferig - nicht mehr weitermachen
+	        case KeyEvent.VK_UP: 		// Vergleich
+	        	break; 					// Fertig - nicht mehr weitermachen
+	        case KeyEvent.VK_DOWN: 		// Vergleich
+	        	break; 					// Fertig - nicht mehr weitermachen
 	    } 
 	}
 
