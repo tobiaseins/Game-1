@@ -44,6 +44,14 @@ public class Fenster extends JComponent implements ActionListener {
 		w.setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	w.setVisible(true);				// sichtbar machen
     }
+    
+    public void bewegungsGeschw() {
+		try{
+	    	Thread.sleep(10); //10 millisek.
+	    } catch (InterruptedException e){
+	    	
+	    }
+	}
 
     protected void paintComponent(Graphics g) {
     	// Hintergrund
@@ -76,9 +84,6 @@ public class Fenster extends JComponent implements ActionListener {
         System.out.println(g.getFont() + "");
         g.drawString("Score: " + "100", s.playGround[0].length*s.raster_Groesse - 100, s.playGround.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + "2", 100, s.playGround.length*s.raster_Groesse - 10);
-      
-        // PacMan Berechnung
-        p.set_soll_richtung(key);
     }
     
 	@Override
