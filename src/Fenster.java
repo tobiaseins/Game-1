@@ -12,8 +12,8 @@ public class Fenster extends JComponent implements ActionListener {
 	//Hauptmethode
     public static void main(String[] args) {
     	
-    	Point Groesseobr = new Point(31,21); // Reine Groesse ohne Pixelberechnung
-    	Point Groesse = new Point(Groesseobr.x*s.raster_Groesse+16,Groesseobr.y*s.raster_Groesse+38); // Groesse mit Pixelberechnung aus Groesseobr
+    	//Point Groesseobr = new Point(s.playGround[0].length,s.playGround.length); // Reine Groesse ohne Pixelberechnung
+    	Point Groesse = new Point(s.playGround[0].length*s.raster_Groesse+16,s.playGround.length*s.raster_Groesse+38); // Groesse mit Pixelberechnung aus Groesseobr
     	
     	JFrame w = new JFrame("PacMan");
     	
