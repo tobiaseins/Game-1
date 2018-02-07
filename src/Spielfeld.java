@@ -6,7 +6,7 @@ public class Spielfeld {
 	public int raster_Groesse = 30;
 	
 	// 0 = leeres Feld; 1 = Wand; 2 = Punkt; 3 = Hurensohnfeld 
-	protected int[][] playGround = {
+	protected static int[][] playGround = {
 			       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 			       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
 			       {1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1},

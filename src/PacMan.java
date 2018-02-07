@@ -22,4 +22,15 @@ public class PacMan extends Figuren{
 	public void leben_verlieren () {
 		
 	}
+	
+	public void punkteFressen() {
+	       try {
+	           if(Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
+	               Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
+	           }
+	       } catch(ArrayIndexOutOfBoundsException exception) {
+	           //Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
+	       }
+	   }
+
 }
