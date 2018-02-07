@@ -7,6 +7,7 @@ public class Fenster extends JComponent implements ActionListener {
 	
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
+	//public PacMan p = new PacMan();
 
 	
 	//Hauptmethode
@@ -65,6 +66,12 @@ public class Fenster extends JComponent implements ActionListener {
                 }
             }
         }
+        
+        // Score und Leben anzeigen
+        g.setColor(Color.white);
+        System.out.println(g.getFont() + "");
+        g.drawString("Score: " + "100", s.playGround[0].length*s.raster_Groesse - 100, s.playGround.length*s.raster_Groesse - 10);
+        g.drawString("Leben: " + "2", 100, s.playGround.length*s.raster_Groesse - 10);
     }
     
 	@Override
