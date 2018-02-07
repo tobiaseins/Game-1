@@ -40,9 +40,9 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyTyped(KeyEvent e) {
                 //System.out.println(e.getKeyChar() + " typed");
             }
-		});			// F�ge die Tastenerkennung hinzu
+		});			// Füge die Tastenerkennung hinzu
 		
-		w.setSize(Groesse.x,Groesse.y);	// Gr��e festlegen
+		w.setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	w.setVisible(true);				// sichtbar machen
     }
 
@@ -51,7 +51,7 @@ public class Fenster extends JComponent implements ActionListener {
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
         g.fillRect(0, 0, s.playGround[0].length*s.raster_Groesse, s.playGround.length*s.raster_Groesse);
         
-        // Wände und Punkte
+        // WÃ¤nde und Punkte
         for(int a = 0; a<s.playGround.length; a++) {
             for(int b = 0; b<s.playGround[0].length; b++) {
                 if(s.playGround[a][b] == 1) {
@@ -66,8 +66,15 @@ public class Fenster extends JComponent implements ActionListener {
                 }
             }
         }
-        p.set_soll_richtung(key);
         
+        // Score und Leben anzeigen
+        g.setColor(Color.white);
+        System.out.println(g.getFont() + "");
+        g.drawString("Score: " + "100", s.playGround[0].length*s.raster_Groesse - 100, s.playGround.length*s.raster_Groesse - 10);
+        g.drawString("Leben: " + "2", 100, s.playGround.length*s.raster_Groesse - 10);
+      
+        // PacMan Berechnung
+        p.set_soll_richtung(key);
     }
     
 	@Override
