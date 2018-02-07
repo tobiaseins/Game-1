@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.JPanel;
 
-public abstract class Figuren {				// extends Fenster ???, Warum sollte Figuren von JPanel erben?
+public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum sollte Figuren von JPanel erben?
 	private Point position;
 	private int geschwindigkeit;
 	private int bewegungsrichtung;
