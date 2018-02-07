@@ -7,6 +7,7 @@ public class Fenster extends JComponent implements ActionListener {
 	
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
+	public static PacMan p = new PacMan();
 
 	
 	//Hauptmethode
@@ -65,6 +66,8 @@ public class Fenster extends JComponent implements ActionListener {
                 }
             }
         }
+        p.set_soll_richtung(key);
+        
     }
     
 	@Override
