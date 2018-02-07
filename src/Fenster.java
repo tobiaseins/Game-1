@@ -13,8 +13,7 @@ public class Fenster extends JComponent implements ActionListener {
 	//Hauptmethode
     public static void main(String[] args) {
     	
-    	//Point Groesseobr = new Point(s.playGround[0].length,s.playGround.length); // Reine Groesse ohne Pixelberechnung
-    	Point Groesse = new Point(s.playGround[0].length*s.raster_Groesse+16,s.playGround.length*s.raster_Groesse+38); // Groesse mit Pixelberechnung aus Groesseobr
+    	Point Groesse = new Point(s.playGround[0].length*s.raster_Groesse+16,s.playGround.length*s.raster_Groesse+38);
     	
     	JFrame w = new JFrame("PacMan");
     	
@@ -63,6 +62,11 @@ public class Fenster extends JComponent implements ActionListener {
                 	g.setColor(new Color(s.get_farbe_Punkte()[0],s.get_farbe_Punkte()[1],s.get_farbe_Punkte()[2]));
                     int c = s.raster_Groesse/3;
                     g.fillRect(b*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, a*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, s.raster_Groesse/c, s.raster_Groesse/c);
+                } else if(s.playGround[a][b] == 3) {
+                    // Geisterwand
+                	g.setColor(new Color(s.get_farbe_Geister_Waende()[0],s.get_farbe_Geister_Waende()[1],s.get_farbe_Geister_Waende()[2]));
+                    int c = s.raster_Groesse/3;
+                    g.fillRect(b*s.raster_Groesse + 1, a*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, s.raster_Groesse, s.raster_Groesse/c);
                 }
             }
         }
