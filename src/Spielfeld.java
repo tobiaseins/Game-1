@@ -6,7 +6,7 @@ public class Spielfeld {
 	
 	// 0 = leeres Feld; 1 = Wand; 2 = Punkt; 3 = Hurensohnfeld 
 	// 27breit*20hoch
-	protected int[][] playGround = {
+	protected static int[][] playGround = {
 			       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 			       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
 			       {1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1},
