@@ -19,35 +19,62 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 	}
 
 	// Wand vor Figur?
-	public boolean wand_vor_figur() {
-		return false;						// später verbessern
+	public void wand_vor_figur() {
+		switch (this.get_soll_richtung()) {
+	    	case 2:
+	    		if (s.playGround[this.get_position().y/this.get_radius()][this.get_position().x/this.get_radius() + 1] != 1) {
+	    			this.bewege();
+	    		}
+	    		break;
+	    	case 4:
+	    		if (s.playGround[this.get_position().y/this.get_radius()][(this.get_position().x - 1)/this.get_radius()] != 1) {
+	    			this.bewege();
+	    		}
+	    		break;
+	    	case 1:
+	    		if (s.playGround[(this.get_position().y - 1)/this.get_radius()][this.get_position().x/this.get_radius()] != 1) {
+	    			this.bewege();
+	    		}
+	    		break;
+	    	case 3:
+	    		if (s.playGround[this.get_position().y/this.get_radius() + 1][this.get_position().x/this.get_radius()] != 1) {
+	    			this.bewege();
+	    		}
+	    		break;
+	    	default:
+	    		break;
+		}	
 	}
 
-	public void bewegen() {
-		switch(this.get_soll_richtung()) {
-			case 1:		// oben
-				this.set_xGeschwindigkeit(0);
-				this.set_yGeschwindigkeit(-this.get_geschwindigkeit());
-				break;
-			case 2:		// rechts
+	public void bewege() {
+		switch (this.get_soll_richtung()) {
+			case 2:	// rechts
 				this.set_xGeschwindigkeit(this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
+				//this.set_position(get_position().x + get_xGeschwindigkeit(), get_position().y);
 				break;
-			case 3:		// unten
-				this.set_xGeschwindigkeit(0);
-				this.set_yGeschwindigkeit(-this.get_geschwindigkeit());
-				break;
-			case 4:		// links
-				this.set_xGeschwindigkeit(-this.get_geschwindigkeit());
+			case 4: // links
+				this.set_xGeschwindigkeit(0 - this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
+				//set_position(get_position().x - get_xGeschwindigkeit(), get_position().y);
 				break;
-			default:	// nichts
+			case 1: // oben
 				this.set_xGeschwindigkeit(0);
-				this.set_yGeschwindigkeit(0);
+				this.set_yGeschwindigkeit(0 - this.get_geschwindigkeit());
+				//set_position(get_position().x, get_position().y - get_yGeschwindigkeit());
+				break;
+			case 3: // unten
+				this.set_xGeschwindigkeit(0);
+				this.set_yGeschwindigkeit(this.get_geschwindigkeit());
+				//set_position(get_position().x, get_position().y + get_yGeschwindigkeit());
+				break;
+			default:
 				break;
 		}
+		
+		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());
 	}
-
+	
 	// Getter
     public Point get_position() {return this.position;}    
     public int get_geschwindigkeit() {return this.geschwindigkeit;}
@@ -61,7 +88,7 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
     public int get_yGeschwindigkeit() {return this.yGeschwindigkeit;}
 	
     // Setter
-    public void set_Position(int xPo, int yPo) {this.position = new Point(xPo, yPo);}
+    public void set_position(int xPo, int yPo) {this.position = new Point(xPo, yPo);}
     public void set_geschwindigkeit(int gesch) {this.geschwindigkeit = gesch;}
     public void set_bewegungsrichtung(int beri) {this.bewegungsrichtung = beri;}
     public void set_farbe(Color f) {this.farbe = f;}
