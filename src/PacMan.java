@@ -1,3 +1,5 @@
+import java.awt.Graphics2D;
+
 
 public class PacMan extends Figuren{
 	// Variablen nur für Pacman
