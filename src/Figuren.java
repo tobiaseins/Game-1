@@ -97,5 +97,5 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
     public void set_soundplay(boolean tof) {this.soundplay = tof;}
     public void set_modus(int mod) {this.modus = mod;}
     public void set_xGeschwindigkeit(int xgesch) {this.xGeschwindigkeit = xgesch;}
-    public void set_yGeschwindigkeit(int ygesch) {this.yGeschwindigkeit = ygesch;}	
+    public void set_yGeschwindigkeit(int ygesch) {this.yGeschwindigkeit = ygesch;}
 }
