@@ -11,6 +11,7 @@ public class Geist extends Figuren {
 	BufferedImage imgleft = null;
 	BufferedImage imgup = null;
 	BufferedImage imgdown = null;
+	
 	public Geist() {											// noch keine Verwendung
 		
 	}
