@@ -40,9 +40,9 @@ public class PacMan extends Figuren{
 	}
 	
 	public PacMan() {
-		this.set_position(20, 20);
+		this.set_position(19*s.raster_Groesse,19*s.raster_Groesse);
 	    this.set_geschwindigkeit(5);
-	    this.set_bewegungsrichtung(1);
+	    this.set_bewegungsrichtung(2);
 	    this.set_farbe(Color.yellow);
 	    this.set_radius(s.raster_Groesse *5/6);
 	    this.set_soll_richtung(1);
