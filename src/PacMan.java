@@ -1,3 +1,5 @@
+import java.awt.Graphics2D;
+
 
 public class PacMan extends Figuren{
 	// Variablen nur für Pacman
@@ -17,9 +19,21 @@ public class PacMan extends Figuren{
 	public int get_leben() {return leben;}
 	public boolean get_mund_offen() {return mund_offen;}
 	public boolean get_kontakt_mit_geist() {return kontakt_mit_geist;}
+
 	
 	// Leben verlieren Funktion
 	public void leben_verlieren () {
 		
 	}
+	
+	public void punkteFressen() {
+	       try {
+	           if(Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
+	               Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
+	           }
+	       } catch(ArrayIndexOutOfBoundsException exception) {
+	           //Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
+	       }
+	   }
+
 }
