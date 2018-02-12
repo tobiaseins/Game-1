@@ -12,6 +12,10 @@ public class Geist extends Figuren {
 	BufferedImage imgup = null;
 	BufferedImage imgdown = null;
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
+	
+	public void richtungs_update(int x) {
+		this.set_soll_richtung(x);
+	}
 
 	
 	public Geist(Point p, int geist_art) {											// noch keine Verwendung
