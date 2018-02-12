@@ -75,6 +75,10 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());
 	}
 	
+	//public void abstract animation(); 
+	public  abstract void richtungs_update(Point p); //abstrakte Methode
+	
+	
 	// Getter
     public Point get_position() {return this.position;}    
     public int get_geschwindigkeit() {return this.geschwindigkeit;}
@@ -98,4 +102,7 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
     public void set_modus(int mod) {this.modus = mod;}
     public void set_xGeschwindigkeit(int xgesch) {this.xGeschwindigkeit = xgesch;}
     public void set_yGeschwindigkeit(int ygesch) {this.yGeschwindigkeit = ygesch;}
+    
+    
+    	
 }
