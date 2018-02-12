@@ -76,7 +76,7 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 	}
 	
 	//public void abstract animation(); 
-	public  abstract void richtungs_update(Point p); //abstrakte Methode
+	public abstract void richtungs_update(int x); //abstrakte Methode
 	
 	
 	// Getter
