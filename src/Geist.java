@@ -11,10 +11,22 @@ public class Geist extends Figuren {
 	BufferedImage imgleft = null;
 	BufferedImage imgup = null;
 	BufferedImage imgdown = null;
+	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
+
 	
-	public Geist() {											// noch keine Verwendung
-		
+	public Geist(Point p, int geist_art) {											// noch keine Verwendung
+		set_position(p.x, p.y);
+		set_geist_art(geist_art);
+		set_bewegungsrichtung(1);
+		set_geschwindigkeit(6); // eventuell ändern
 	}
+	
+	// Set-Methoden
+	public void set_geist_art(int  geist_art) {this.geist_art = geist_art;}
+	
+	// Get-Methoden
+	public int get_geist_art() {return this.geist_art;}
+
 	
 	public void animation() {								// geister Blickrichtung	
 		if(this.get_bewegungsrichtung() == 1)
