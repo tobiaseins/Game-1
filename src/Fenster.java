@@ -13,7 +13,7 @@ public class Fenster extends JComponent implements ActionListener {
 	//Hauptmethode
     public static void main(String[] args) {
     	
-    	Point Groesse = new Point(s.playGround[0].length*s.raster_Groesse+16,s.playGround.length*s.raster_Groesse+38);
+    	Point Groesse = new Point(s.spielfeld[0].length*s.raster_Groesse+16,s.spielfeld.length*s.raster_Groesse+38);
     	
     	JFrame w = new JFrame("PacMan");
     	
@@ -44,25 +44,33 @@ public class Fenster extends JComponent implements ActionListener {
 		w.setSize(Groesse.x,Groesse.y);	// Größe festlegen
     	w.setVisible(true);				// sichtbar machen
     }
+    
+    public void bewegungsGeschw() {
+		try{
+	    	Thread.sleep(10); //10 millisek.
+	    } catch (InterruptedException e){
+	    	
+	    }
+	}
 
     protected void paintComponent(Graphics g) {
     	// Hintergrund
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
-        g.fillRect(0, 0, s.playGround[0].length*s.raster_Groesse, s.playGround.length*s.raster_Groesse);
+        g.fillRect(0, 0, s.spielfeld[0].length*s.raster_Groesse, s.spielfeld.length*s.raster_Groesse);
         
         // WÃ¤nde und Punkte
-        for(int a = 0; a<s.playGround.length; a++) {
-            for(int b = 0; b<s.playGround[0].length; b++) {
-                if(s.playGround[a][b] == 1) {
+        for(int a = 0; a<s.spielfeld.length; a++) {
+            for(int b = 0; b<s.spielfeld[0].length; b++) {
+                if(s.spielfeld[a][b] == 1) {
                     // Wand
                     g.setColor(new Color(s.get_farbe_Waende()[0],s.get_farbe_Waende()[1],s.get_farbe_Waende()[2]));
                     g.fillRect(b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse);
-                } else if(s.playGround[a][b] == 2) {
+                } else if(s.spielfeld[a][b] == 2) {
                     // Punkt
                 	g.setColor(new Color(s.get_farbe_Punkte()[0],s.get_farbe_Punkte()[1],s.get_farbe_Punkte()[2]));
                     int c = s.raster_Groesse/3;
                     g.fillRect(b*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, a*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, s.raster_Groesse/c, s.raster_Groesse/c);
-                } else if(s.playGround[a][b] == 3) {
+                } else if(s.spielfeld[a][b] == 3) {
                     // Geisterwand
                 	g.setColor(new Color(s.get_farbe_Geister_Waende()[0],s.get_farbe_Geister_Waende()[1],s.get_farbe_Geister_Waende()[2]));
                     int c = s.raster_Groesse/3;
@@ -74,11 +82,8 @@ public class Fenster extends JComponent implements ActionListener {
         // Score und Leben anzeigen
         g.setColor(Color.white);
         System.out.println(g.getFont() + "");
-        g.drawString("Score: " + "100", s.playGround[0].length*s.raster_Groesse - 100, s.playGround.length*s.raster_Groesse - 10);
-        g.drawString("Leben: " + "2", 100, s.playGround.length*s.raster_Groesse - 10);
-      
-        // PacMan Berechnung
-        p.set_soll_richtung(key);
+        g.drawString("Score: " + "100", s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
+        g.drawString("Leben: " + "2", 100, s.spielfeld.length*s.raster_Groesse - 10);
     }
     
 	@Override

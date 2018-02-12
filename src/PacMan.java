@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Graphics2D;
 
 
 public class PacMan extends Figuren{
@@ -21,6 +22,7 @@ public class PacMan extends Figuren{
 	public int get_leben() {return leben;}
 	public boolean get_mund_offen() {return mund_offen;}
 	public boolean get_kontakt_mit_geist() {return kontakt_mit_geist;}
+
 	
 	// Leben verlieren Funktion
 	public void leben_verlieren () {
