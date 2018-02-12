@@ -29,10 +29,10 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 switch( keyCode ) { 
-                    case KeyEvent.VK_UP: key = 1; p.set_soll_richtung(1); break;
-                    case KeyEvent.VK_RIGHT: key = 2; p.set_soll_richtung(2); break;
-                    case KeyEvent.VK_DOWN: key = 3; p.set_soll_richtung(3); break;
-                    case KeyEvent.VK_LEFT: key = 4; p.set_soll_richtung(4); break;
+                    case KeyEvent.VK_UP: key = 1; p.richtungs_update(1); break;
+                    case KeyEvent.VK_RIGHT: key = 2; p.richtungs_update(2); break;
+                    case KeyEvent.VK_DOWN: key = 3; p.richtungs_update(3); break;
+                    case KeyEvent.VK_LEFT: key = 4; p.richtungs_update(4); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
