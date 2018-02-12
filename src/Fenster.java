@@ -103,7 +103,7 @@ public class Fenster extends JComponent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 		
-		p.bewege();
+		p.wand_vor_figur();
 		//bewegungsGeschw();
     }
 };
