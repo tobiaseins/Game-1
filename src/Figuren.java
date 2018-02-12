@@ -21,23 +21,23 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 	// Wand vor Figur?
 	public void wand_vor_figur() {
 		switch (this.get_soll_richtung()) {
-	    	case 2:
-	    		if (s.spielfeld[this.get_position().y/this.get_radius()][this.get_position().x/this.get_radius() + 1] != 1) {
+	    	case 2://rechts
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] != 1) {
 	    			this.bewege();
 	    		}
 	    		break;
-	    	case 4:
-	    		if (s.spielfeld[this.get_position().y/this.get_radius()][(this.get_position().x - 1)/this.get_radius()] != 1) {
+	    	case 4://links
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] != 1) {
 	    			this.bewege();
 	    		}
 	    		break;
-	    	case 1:
-	    		if (s.spielfeld[(this.get_position().y - 1)/this.get_radius()][this.get_position().x/this.get_radius()] != 1) {
+	    	case 1://oben
+	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] != 1) {
 	    			this.bewege();
 	    		}
 	    		break;
-	    	case 3:
-	    		if (s.spielfeld[this.get_position().y/this.get_radius() + 1][this.get_position().x/this.get_radius()] != 1) {
+	    	case 3://unten
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] != 1) {
 	    			this.bewege();
 	    		}
 	    		break;
@@ -75,6 +75,10 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());
 	}
 	
+	//public void abstract animation(); 
+	public  abstract void richtungs_update(Point p); //abstrakte Methode
+	
+	
 	// Getter
     public Point get_position() {return this.position;}    
     public int get_geschwindigkeit() {return this.geschwindigkeit;}
@@ -99,3 +103,4 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
     public void set_xGeschwindigkeit(int xgesch) {this.xGeschwindigkeit = xgesch;}
     public void set_yGeschwindigkeit(int ygesch) {this.yGeschwindigkeit = ygesch;}
 }
+
