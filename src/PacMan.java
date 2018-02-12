@@ -31,8 +31,8 @@ public class PacMan extends Figuren{
 	
 	public void punkte_fressen() {
 		try {
-			if(Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
-				Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
+			if(Spielfeld.spielfeld[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
+				Spielfeld.spielfeld[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
 			}
 		} catch(ArrayIndexOutOfBoundsException exception) {
 			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
