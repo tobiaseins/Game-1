@@ -18,34 +18,77 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 		
 	}
 
-	// Wand vor Figur?
+	// Wand vor Figur?, es wird gecheckt, ob Pacman die Richtung ändern kann
 	public void wand_vor_figur() {
+		System.out.println(this.get_bewegungsrichtung() + "; " + this.get_soll_richtung() + "; " + this.get_xGeschwindigkeit() + "; " + this.get_yGeschwindigkeit() + "; " + this.get_position().x + "; " + this.get_position().y);
+			
+		switch(this.get_bewegungsrichtung()) {
+			case 2://rechts
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] == 1) {
+	    			this.set_xGeschwindigkeit(0);
+	    			this.set_bewegungsrichtung(0);
+	    			if(this.get_soll_richtung() == 2) this.set_soll_richtung(0);
+	    		}
+	    		break;
+	    	case 4://links
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] == 1) {
+	    			this.set_xGeschwindigkeit(0);
+	    			this.set_bewegungsrichtung(0);
+	    			if(this.get_soll_richtung() == 4) this.set_soll_richtung(0);
+	    		}
+	    		break;
+	    	case 1://oben
+	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] == 1) {
+	    			this.set_yGeschwindigkeit(0);
+	    			this.set_bewegungsrichtung(0);
+	    			if(this.get_soll_richtung() == 1) this.set_soll_richtung(0);
+	    		}
+	    		break;
+	    	case 3://unten
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] == 1) {
+	    			this.set_yGeschwindigkeit(0);
+	    			this.set_bewegungsrichtung(0);
+	    			if(this.get_soll_richtung() == 3) this.set_soll_richtung(0);
+	    		}
+	    		break;
+	    	default:
+	    		break;
+		}
+		
+		System.out.println(this.get_bewegungsrichtung() + "; " + this.get_soll_richtung() + "; " + this.get_xGeschwindigkeit() + "; " + this.get_yGeschwindigkeit() + "; " + this.get_position().x + "; " + this.get_position().y);
+		
+
 		switch (this.get_soll_richtung()) {
 	    	case 2://rechts
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] != 1 && this.get_position().y % 30 ==0) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] != 1 && this.get_position().y % s.raster_Groesse ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 4://links
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] != 1 && this.get_position().y % 30 == 0) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] != 1 && this.get_position().y % s.raster_Groesse == 0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 1://oben
-	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % 30 ==0) {
+	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % s.raster_Groesse ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 3://unten
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % 30 ==0) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % s.raster_Groesse ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	default:
 	    		break;
-		}	
+		}
+		
+		System.out.println(this.get_bewegungsrichtung() + "; " + this.get_soll_richtung() + "; " + this.get_xGeschwindigkeit() + "; " + this.get_yGeschwindigkeit() + "; " + this.get_position().x + "; " + this.get_position().y);
+		
+		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());	
 	}
 
+	// Richtung wird geändert
 	public void bewege() {
 		switch (this.get_soll_richtung()) {
 			case 2:	// rechts
@@ -71,8 +114,6 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 			default:
 				break;
 		}
-		
-		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());
 	}
 	
 	//public void abstract animation(); 
