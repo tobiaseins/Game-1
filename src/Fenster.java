@@ -8,6 +8,7 @@ public class Fenster extends JComponent implements ActionListener {
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
 	public static PacMan p = new PacMan();
+	public static Geist g1 = new Geist(new Point(14*s.raster_Groesse,9*s.raster_Groesse), 1, Color.RED);
 	
 	public static int fps = 24; // Bilder pro Sekunde
     public static int refresh = 1000/fps; // in ms
@@ -42,15 +43,15 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyTyped(KeyEvent e) {
                 //System.out.println(e.getKeyChar() + " typed");
             }
-		});			// Füge die Tastenerkennung hinzu
+		});			// FÃ¼ge die Tastenerkennung hinzu
 		
-		w.setSize(Groesse.x,Groesse.y);	// Größe festlegen
+		w.setSize(Groesse.x,Groesse.y);	// GrÃ¶ÃŸe festlegen
     	w.setVisible(true);				// sichtbar machen
     	
-    	// Timer f�r das Neuzeichnen --> ersetzt das repaint() in
+    	// Timer für das Neuzeichnen --> ersetzt das repaint() in
     	// der Methode paintComponent(Graphics g)
     	// Hierdurch werden weniger Ressourcen verbraucht und die
-    	// Animation l�uft fl�ssiger
+    	// Animation läuft flüssiger
         Timer t = new Timer(refresh, game);
         t.start();
     }
@@ -60,7 +61,7 @@ public class Fenster extends JComponent implements ActionListener {
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
         g.fillRect(0, 0, s.spielfeld[0].length*s.raster_Groesse, s.spielfeld.length*s.raster_Groesse);
         
-        // WÃ¤nde und Punkte
+        // WÃƒÂ¤nde und Punkte
         for(int a = 0; a<s.spielfeld.length; a++) {
             for(int b = 0; b<s.spielfeld[0].length; b++) {
                 if(s.spielfeld[a][b] == 1) {
@@ -89,9 +90,14 @@ public class Fenster extends JComponent implements ActionListener {
         
         //PacMan
         g.setColor(p.get_farbe());
-	    g.fillArc(p.get_position().x, p.get_position().y, p.get_radius(), p.get_radius(),
+	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
 	              45 + p.get_bewegungsrichtung(), 360-2*p.get_bewegungsrichtung());
 	    
+	    
+	    //Geist
+	    g.setColor(g1.get_farbe());
+	    //g.drawImage(g1.animation(), g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius(), null);
+	    g.fillRect(g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius());
     }
     
 	@Override
@@ -99,5 +105,7 @@ public class Fenster extends JComponent implements ActionListener {
 		repaint();
 		
 		p.wand_vor_figur();
+		g1.richtungs_update(p.get_position());
+		g1.wand_vor_figur();
     }
 };
