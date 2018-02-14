@@ -54,14 +54,6 @@ public class Fenster extends JComponent implements ActionListener {
         Timer t = new Timer(refresh, game);
         t.start();
     }
-    /*
-    public void bewegungsGeschw() {
-		try{
-	    	Thread.sleep(10); //10 millisek.
-	    } catch (InterruptedException e){
-	    	
-	    }
-	}*/
 
     protected void paintComponent(Graphics g) {
     	// Hintergrund
@@ -91,7 +83,7 @@ public class Fenster extends JComponent implements ActionListener {
         
         // Score und Leben anzeigen
         g.setColor(Color.white);
-        System.out.println(g.getFont() + "");
+        //System.out.println(g.getFont() + "");
         g.drawString("Score: " + "100", s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + "2", 100, s.spielfeld.length*s.raster_Groesse - 10);
         
@@ -107,6 +99,5 @@ public class Fenster extends JComponent implements ActionListener {
 		repaint();
 		
 		p.wand_vor_figur();
-		//bewegungsGeschw();
     }
 };
