@@ -8,6 +8,9 @@ public class Fenster extends JComponent implements ActionListener {
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
 	public static PacMan p = new PacMan();
+	
+	public static int fps = 24; // Bilder pro Sekunde
+    public static int refresh = 1000/fps; // in ms
 
 	
 	//Hauptmethode
@@ -26,10 +29,10 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 switch( keyCode ) { 
-                    case KeyEvent.VK_UP: key = 1; break;
-                    case KeyEvent.VK_RIGHT: key = 2; break;
-                    case KeyEvent.VK_DOWN: key = 3; break;
-                    case KeyEvent.VK_LEFT: key = 4; break;
+                    case KeyEvent.VK_UP: key = 1; p.richtungs_update(1); break;
+                    case KeyEvent.VK_RIGHT: key = 2; p.richtungs_update(2); break;
+                    case KeyEvent.VK_DOWN: key = 3; p.richtungs_update(3); break;
+                    case KeyEvent.VK_LEFT: key = 4; p.richtungs_update(4); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -43,15 +46,14 @@ public class Fenster extends JComponent implements ActionListener {
 		
 		w.setSize(Groesse.x,Groesse.y);	// GrÃ¶ÃŸe festlegen
     	w.setVisible(true);				// sichtbar machen
+    	
+    	// Timer für das Neuzeichnen --> ersetzt das repaint() in
+    	// der Methode paintComponent(Graphics g)
+    	// Hierdurch werden weniger Ressourcen verbraucht und die
+    	// Animation läuft flüssiger
+        Timer t = new Timer(refresh, game);
+        t.start();
     }
-    
-    public void bewegungsGeschw() {
-		try{
-	    	Thread.sleep(10); //10 millisek.
-	    } catch (InterruptedException e){
-	    	
-	    }
-	}
 
     protected void paintComponent(Graphics g) {
     	// Hintergrund
@@ -81,13 +83,21 @@ public class Fenster extends JComponent implements ActionListener {
         
         // Score und Leben anzeigen
         g.setColor(Color.white);
-        System.out.println(g.getFont() + "");
+        //System.out.println(g.getFont() + "");
         g.drawString("Score: " + "100", s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + "2", 100, s.spielfeld.length*s.raster_Groesse - 10);
+        
+        //PacMan
+        g.setColor(p.get_farbe());
+	    g.fillArc(p.get_position().x, p.get_position().y, p.get_radius(), p.get_radius(),
+	              45 + p.get_bewegungsrichtung(), 360-2*p.get_bewegungsrichtung());
+	    
     }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		repaint();
 		
+		p.wand_vor_figur();
     }
 };
