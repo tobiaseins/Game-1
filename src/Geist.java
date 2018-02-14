@@ -11,6 +11,10 @@ public class Geist extends Figuren {
 	BufferedImage imgleft = null;
 	BufferedImage imgup = null;
 	BufferedImage imgdown = null;
+	BufferedImage imgright_2 = null;
+	BufferedImage imgleft_2 = null;
+	BufferedImage imgup_2 = null;
+	BufferedImage imgdown_2 = null;
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
 	
 	public void richtungs_update(int x) {
@@ -18,7 +22,7 @@ public class Geist extends Figuren {
 	}
 
 	
-	public Geist(Point p, int geist_art) {											// noch keine Verwendung
+	public Geist(Point p, int geist_art) {											
 		set_position(p.x, p.y);
 		set_geist_art(geist_art);
 		set_bewegungsrichtung(1);
@@ -33,26 +37,46 @@ public class Geist extends Figuren {
 
 	
 	public void animation() {								// geister Blickrichtung	
-		if(this.get_bewegungsrichtung() == 1)
+		if(this.get_bewegungsrichtung() == 1 && this.geist_art == 1)
 			try{
 				imgup = ImageIO.read(new File("oben.png"));
 			} catch (IOException e) {	
 			}
-		if(this.get_bewegungsrichtung() == 2)
+		if(this.get_bewegungsrichtung() == 2 && this.geist_art == 1)
 			try{
 				imgright = ImageIO.read(new File("rechts.png"));
 			} catch (IOException e) {
 			}
-		if(this.get_bewegungsrichtung() == 3)
+		if(this.get_bewegungsrichtung() == 3 && this.geist_art == 1)
 			try{
-			imgdown = ImageIO.read(new File("unten.png"));
+				imgdown = ImageIO.read(new File("unten.png"));
 			} catch (IOException e) {
 			}
-		if(this.get_bewegungsrichtung() == 4)
+		if(this.get_bewegungsrichtung() == 4 && this.geist_art == 1)
 			try{
-			imgleft = ImageIO.read(new File("links.png"));
+				imgleft = ImageIO.read(new File("links.png"));
+			} catch (IOException e) {
+		}
+		if(this.get_bewegungsrichtung() == 1 && this.geist_art == 2)
+			try{
+				imgup_2 = ImageIO.read(new File("oben.png"));
+			} catch (IOException e) {	
+			}
+		if(this.get_bewegungsrichtung() == 2 && this.geist_art == 2)
+			try{
+				imgright_2 = ImageIO.read(new File("rechts.png"));
 			} catch (IOException e) {
 			}
+		if(this.get_bewegungsrichtung() == 3 && this.geist_art == 2)
+			try{
+				imgdown_2 = ImageIO.read(new File("unten.png"));
+			} catch (IOException e) {
+			}
+		if(this.get_bewegungsrichtung() == 4 && this.geist_art == 2)
+			try{
+				imgleft_2 = ImageIO.read(new File("links.png"));
+			} catch (IOException e) {
+		}
 		else System.exit(0);
 		
 		
