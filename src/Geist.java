@@ -12,6 +12,10 @@ public class Geist extends Figuren {
 	BufferedImage imgleft = null;
 	BufferedImage imgup = null;
 	BufferedImage imgdown = null;
+	BufferedImage imgright_2 = null;
+	BufferedImage imgleft_2 = null;
+	BufferedImage imgup_2 = null;
+	BufferedImage imgdown_2 = null;
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
 	
 	public void richtungs_update(int x) {
@@ -25,7 +29,7 @@ public class Geist extends Figuren {
 		set_position(p.x, p.y);
 		set_geist_art(geist_art);
 		set_bewegungsrichtung(1);
-		set_geschwindigkeit(6); // eventuell ändern
+		set_geschwindigkeit(6); // eventuell Ã¤ndern
 	}
 	
 	// Set-Methoden
@@ -36,22 +40,22 @@ public class Geist extends Figuren {
 
 	
 	public BufferedImage animation() {								// geister Blickrichtung	
-		if(this.get_bewegungsrichtung() == 1)
+		if(this.get_bewegungsrichtung() == 1 && this.geist_art == 1)
 			try{
 				img = ImageIO.read(new File("./bilder/oben.png"));
 			} catch (IOException e) {	
 			}
-		if(this.get_bewegungsrichtung() == 2)
+		if(this.get_bewegungsrichtung() == 2 && this.geist_art == 1)
 			try{
 				img = ImageIO.read(new File("./bilder/rechts.png"));
 			} catch (IOException e) {
 			}
-		if(this.get_bewegungsrichtung() == 3)
+		if(this.get_bewegungsrichtung() == 3 && this.geist_art == 1)
 			try{
 			img = ImageIO.read(new File("./bilder/unten.png"));
 			} catch (IOException e) {
 			}
-		if(this.get_bewegungsrichtung() == 4)
+		if(this.get_bewegungsrichtung() == 4 && this.geist_art == 1)
 			try{
 			img = ImageIO.read(new File("./bilder/links.png"));
 			} catch (IOException e) {
