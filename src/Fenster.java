@@ -8,6 +8,7 @@ public class Fenster extends JComponent implements ActionListener {
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
 	public static PacMan p = new PacMan();
+	public static Geist g1 = new Geist(new Point(14*s.raster_Groesse,9*s.raster_Groesse), 1, Color.RED);
 	
 	public static int fps = 24; // Bilder pro Sekunde
     public static int refresh = 1000/fps; // in ms
@@ -92,6 +93,11 @@ public class Fenster extends JComponent implements ActionListener {
 	    g.fillArc(p.get_position().x, p.get_position().y, p.get_radius(), p.get_radius(),
 	              45 + p.get_bewegungsrichtung(), 360-2*p.get_bewegungsrichtung());
 	    
+	    
+	    //Geist
+	    g.setColor(g1.get_farbe());
+	    //g.drawImage(g1.animation(), g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius(), null);
+	    g.fillRect(g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius());
     }
     
 	@Override
@@ -99,5 +105,7 @@ public class Fenster extends JComponent implements ActionListener {
 		repaint();
 		
 		p.wand_vor_figur();
+		g1.richtungs_update(p.get_position());
+		g1.wand_vor_figur();
     }
 };
