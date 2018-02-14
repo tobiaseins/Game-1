@@ -22,22 +22,22 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 	public void wand_vor_figur() {
 		switch (this.get_soll_richtung()) {
 	    	case 2://rechts
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] != 1) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] != 1 && this.get_position().y % 30 ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 4://links
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] != 1) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] != 1 && this.get_position().y % 30 == 0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 1://oben
-	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] != 1) {
+	    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % 30 ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
 	    	case 3://unten
-	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] != 1) {
+	    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] != 1 && this.get_position().x % 30 ==0) {
 	    			this.bewege();
 	    		}
 	    		break;
