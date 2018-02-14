@@ -29,10 +29,14 @@ public class PacMan extends Figuren{
 		
 	}
 	
+	public void richtungs_update(int x) {
+		this.set_soll_richtung(x);
+	}
+	
 	public void punkte_fressen() {
 		try {
-			if(Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
-				Spielfeld.playGround[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
+			if(Spielfeld.spielfeld[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
+				Spielfeld.spielfeld[get_position().y/get_radius()][get_position().x/get_radius()] = 0;
 			}
 		} catch(ArrayIndexOutOfBoundsException exception) {
 			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
@@ -40,9 +44,9 @@ public class PacMan extends Figuren{
 	}
 	
 	public PacMan() {
-		this.set_position(20, 20);
+		this.set_position(19*s.raster_Groesse,19*s.raster_Groesse);
 	    this.set_geschwindigkeit(5);
-	    this.set_bewegungsrichtung(1);
+	    this.set_bewegungsrichtung(2);
 	    this.set_farbe(Color.yellow);
 	    this.set_radius(s.raster_Groesse *5/6);
 	    this.set_soll_richtung(1);
