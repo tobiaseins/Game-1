@@ -47,7 +47,10 @@ public class Fenster extends JComponent implements ActionListener {
 		w.setSize(Groesse.x,Groesse.y);	// GrÃ¶ÃŸe festlegen
     	w.setVisible(true);				// sichtbar machen
     	
-    	// Timer
+    	// Timer für das Neuzeichnen --> ersetzt das repaint() in
+    	// der Methode paintComponent(Graphics g)
+    	// Hierdurch werden weniger Ressourcen verbraucht und die
+    	// Animation läuft flüssiger
         Timer t = new Timer(refresh, game);
         t.start();
     }
