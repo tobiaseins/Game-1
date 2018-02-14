@@ -29,6 +29,10 @@ public class PacMan extends Figuren{
 		
 	}
 	
+	public void richtungs_update(int x) {
+		this.set_soll_richtung(x);
+	}
+	
 	public void punkte_fressen() {
 		try {
 			if(Spielfeld.spielfeld[get_position().y/get_radius()][get_position().x/get_radius()] == 2 && get_position().x%get_radius() == 0 && get_position().y%get_radius() == 0) {
