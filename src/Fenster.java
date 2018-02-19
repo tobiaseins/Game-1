@@ -12,6 +12,7 @@ public class Fenster extends JComponent implements ActionListener {
 	
 	public static int fps = 24; // Bilder pro Sekunde
     public static int refresh = 1000/fps; // in ms
+    public static int count = 0;
 
 	
 	//Hauptmethode
@@ -104,10 +105,12 @@ public class Fenster extends JComponent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+		count++;
 		
 		p.wand_vor_figur(s.spielfeld, s.raster_Groesse);
 		p.punkte_fressen(s.spielfeld, s.raster_Groesse);
 		g1.richtungs_update(p.get_position());
 		g1.wand_vor_figur(s.spielfeld, s.raster_Groesse);
+		g1.wand_vor_geist(count, s.spielfeld, s.raster_Groesse);
     }
 };
