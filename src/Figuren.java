@@ -27,28 +27,28 @@ public abstract class Figuren{				// extends Fenster ???, Warum sollte Figuren v
 	    		if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) {
 	    			this.set_xGeschwindigkeit(0);
 	    			this.set_bewegungsrichtung(0);
-	    			if(this.get_soll_richtung() == 2) this.set_soll_richtung(0);
+	    			if(this.get_soll_richtung() == 1) this.set_soll_richtung(0);
 	    		}
 	    		break;
 	    	case 3://links
 	    		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) {
 	    			this.set_xGeschwindigkeit(0);
 	    			this.set_bewegungsrichtung(0);
-	    			if(this.get_soll_richtung() == 4) this.set_soll_richtung(0);
+	    			if(this.get_soll_richtung() == 3) this.set_soll_richtung(0);
 	    		}
 	    		break;
 	    	case 2://oben
 	    		if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) {
 	    			this.set_yGeschwindigkeit(0);
 	    			this.set_bewegungsrichtung(0);
-	    			if(this.get_soll_richtung() == 1) this.set_soll_richtung(0);
+	    			if(this.get_soll_richtung() == 2) this.set_soll_richtung(0);
 	    		}
 	    		break;
 	    	case 4://unten
 	    		if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) {
 	    			this.set_yGeschwindigkeit(0);
 	    			this.set_bewegungsrichtung(0);
-	    			if(this.get_soll_richtung() == 3) this.set_soll_richtung(0);
+	    			if(this.get_soll_richtung() == 4) this.set_soll_richtung(0);
 	    		}
 	    		break;
 	    	default:
@@ -94,25 +94,25 @@ public abstract class Figuren{				// extends Fenster ???, Warum sollte Figuren v
 			case 1:	// rechts
 				this.set_xGeschwindigkeit(this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
-				this.set_bewegungsrichtung(2);
+				this.set_bewegungsrichtung(1);
 				break;
 				
 			case 3: // links
 				this.set_xGeschwindigkeit(0 - this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
-				this.set_bewegungsrichtung(4);
+				this.set_bewegungsrichtung(3);
 				break;
 				
 			case 2: // oben
 				this.set_xGeschwindigkeit(0);
 				this.set_yGeschwindigkeit(0 - this.get_geschwindigkeit());
-				this.set_bewegungsrichtung(1);
+				this.set_bewegungsrichtung(2);
 				break;
 				
 			case 4: // unten
 				this.set_xGeschwindigkeit(0);
 				this.set_yGeschwindigkeit(this.get_geschwindigkeit());
-				this.set_bewegungsrichtung(3);
+				this.set_bewegungsrichtung(4);
 				break;
 				
 			default:
