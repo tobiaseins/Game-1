@@ -83,7 +83,7 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 	    		break;
 		}
 		
-		System.out.println(this.get_bewegungsrichtung() + "; " + this.get_soll_richtung() + "; " + this.get_xGeschwindigkeit() + "; " + this.get_yGeschwindigkeit() + "; " + this.get_position().x + "; " + this.get_position().y);
+		//System.out.println(this.get_bewegungsrichtung() + "; " + this.get_soll_richtung() + "; " + this.get_xGeschwindigkeit() + "; " + this.get_yGeschwindigkeit() + "; " + this.get_position().x + "; " + this.get_position().y);
 		
 		this.set_position(this.get_position().x + this.get_xGeschwindigkeit(), this.get_position().y + this.get_yGeschwindigkeit());	
 	}
@@ -94,23 +94,27 @@ public abstract class Figuren extends Fenster {				// extends Fenster ???, Warum
 			case 2:	// rechts
 				this.set_xGeschwindigkeit(this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
-				//this.set_position(get_position().x + get_xGeschwindigkeit(), get_position().y);
+				this.set_bewegungsrichtung(2);
 				break;
+				
 			case 4: // links
 				this.set_xGeschwindigkeit(0 - this.get_geschwindigkeit());
 				this.set_yGeschwindigkeit(0);
-				//set_position(get_position().x - get_xGeschwindigkeit(), get_position().y);
+				this.set_bewegungsrichtung(4);
 				break;
+				
 			case 1: // oben
 				this.set_xGeschwindigkeit(0);
 				this.set_yGeschwindigkeit(0 - this.get_geschwindigkeit());
-				//set_position(get_position().x, get_position().y - get_yGeschwindigkeit());
+				this.set_bewegungsrichtung(1);
 				break;
+				
 			case 3: // unten
 				this.set_xGeschwindigkeit(0);
 				this.set_yGeschwindigkeit(this.get_geschwindigkeit());
-				//set_position(get_position().x, get_position().y + get_yGeschwindigkeit());
+				this.set_bewegungsrichtung(3);
 				break;
+				
 			default:
 				break;
 		}
