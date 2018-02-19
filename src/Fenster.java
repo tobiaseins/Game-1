@@ -25,6 +25,7 @@ public class Fenster extends JComponent implements ActionListener {
         
         w.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         w.setLocationRelativeTo(null);
+        w.setLocationByPlatform(true);
         w.add(game);
 		w.addKeyListener(new KeyListener() {
             public void keyPressed(KeyEvent e) {
