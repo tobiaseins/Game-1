@@ -48,12 +48,12 @@ public class PacMan extends Figuren{
 		}
 	}
 	
-	public PacMan() {
-		this.set_position(19*s.raster_Groesse,19*s.raster_Groesse);
+	public PacMan(int raster_Groesse) {
+		this.set_position(19*raster_Groesse,19*raster_Groesse);
 	    this.set_geschwindigkeit(5);
 	    this.set_bewegungsrichtung(2);
 	    this.set_farbe(Color.yellow);
-	    this.set_radius(s.raster_Groesse *5/6);
+	    this.set_radius(raster_Groesse *5/6);
 	    this.set_soll_richtung(1);
 	    this.set_score(0);
 	    //set_soundplay(boolean tof);		-> wird woanders festgelegt
