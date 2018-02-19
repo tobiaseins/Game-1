@@ -17,6 +17,7 @@ public class Geist extends Figuren {
 	BufferedImage imgup_2 = null;
 	BufferedImage imgdown_2 = null;
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
+	public boolean wand;
 	
 	public void richtungs_update(int x) {
 		this.set_soll_richtung(x);
@@ -34,9 +35,11 @@ public class Geist extends Figuren {
 	
 	// Set-Methoden
 	public void set_geist_art(int  geist_art) {this.geist_art = geist_art;}
+	public void set_wand(boolean wand) {this.wand = wand;}
 	
 	// Get-Methoden
 	public int get_geist_art() {return this.geist_art;}
+	public boolean get_wand() {return this.wand;}
 
 	
 	public BufferedImage animation() {								// geister Blickrichtung	
@@ -60,8 +63,30 @@ public class Geist extends Figuren {
 			img = ImageIO.read(new File("./bilder/links.png"));
 			} catch (IOException e) {
 			}
-		return img;
+		return img;}
 		
+		
+		
+		public boolean wand_vor_geist(int[][] spielfeld, int raster_Groesse) {
+							
+			switch(this.get_bewegungsrichtung()) {
+				case 1://rechts
+		    		if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) wand = true;
+		    		break;
+		    	case 3://links
+		    		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) wand = true;
+		    		break;
+		    	case 2://oben
+		    		if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) wand = true;
+		    		break;
+		    	case 4://unten
+		    		if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) wand = true;
+		    		break;
+		    	default:
+		    		break;
+		    		
+			}
+			return wand;
 		
 	
 	}
@@ -76,9 +101,9 @@ public class Geist extends Figuren {
 		if(Unterschied.x < 0 && Unterschied.y > 0) Quadrant = 2;
 		
 		if(Quadrant == 1) this.set_soll_richtung(ran.nextInt(2) * 3 + 1);
-		if(Quadrant == 2) this.set_soll_richtung(ran.nextInt(2) * 2 + 1);
+		if(Quadrant == 2) this.set_soll_richtung(ran.nextInt(2) + 1);
 		if(Quadrant == 3) this.set_soll_richtung(ran.nextInt(2) + 2);
-		if(Quadrant == 4) this.set_soll_richtung(ran.nextInt(2) * 2 + 2);
+		if(Quadrant == 4) this.set_soll_richtung(ran.nextInt(2) + 3);
 	
 	}
 	

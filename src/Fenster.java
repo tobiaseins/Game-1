@@ -4,10 +4,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Fenster extends JComponent implements ActionListener {
-	
+	private static final long serialVersionUID = 1L;
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
-	public static PacMan p = new PacMan();
+	public static PacMan p = new PacMan(s.raster_Groesse);
 	public static Geist g1 = new Geist(new Point(14*s.raster_Groesse,9*s.raster_Groesse), 1, Color.RED);
 	
 	public static int fps = 24; // Bilder pro Sekunde
@@ -31,10 +31,10 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 switch( keyCode ) { 
-                    case KeyEvent.VK_UP: key = 1; p.richtungs_update(1); break;
-                    case KeyEvent.VK_RIGHT: key = 2; p.richtungs_update(2); break;
-                    case KeyEvent.VK_DOWN: key = 3; p.richtungs_update(3); break;
-                    case KeyEvent.VK_LEFT: key = 4; p.richtungs_update(4); break;
+                    case KeyEvent.VK_UP: key = 2; p.richtungs_update(key); break;
+                    case KeyEvent.VK_RIGHT: key = 1; p.richtungs_update(key); break;
+                    case KeyEvent.VK_DOWN: key = 4; p.richtungs_update(key); break;
+                    case KeyEvent.VK_LEFT: key = 3; p.richtungs_update(key); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -86,13 +86,13 @@ public class Fenster extends JComponent implements ActionListener {
         // Score und Leben anzeigen
         g.setColor(Color.white);
         //System.out.println(g.getFont() + "");
-        g.drawString("Score: " + "100", s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
+        g.drawString("Score: " + p.get_score(), s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + "2", 100, s.spielfeld.length*s.raster_Groesse - 10);
         
         //PacMan
         g.setColor(p.get_farbe());
 	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
-	              45 + p.get_bewegungsrichtung(), 360-2*p.get_bewegungsrichtung());
+	              45 + 90*(p.get_bewegungsrichtung()-1), 275);
 	    
 	    
 	    //Geist
@@ -105,8 +105,9 @@ public class Fenster extends JComponent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 		
-		p.wand_vor_figur();
+		p.wand_vor_figur(s.spielfeld, s.raster_Groesse);
+		p.punkte_fressen(s.spielfeld, s.raster_Groesse);
 		g1.richtungs_update(p.get_position());
-		g1.wand_vor_figur();
+		g1.wand_vor_figur(s.spielfeld, s.raster_Groesse);
     }
 };
