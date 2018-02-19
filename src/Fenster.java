@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Fenster extends JComponent implements ActionListener {
-	
+	private static final long serialVersionUID = 1L;
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
 	public static PacMan p = new PacMan();
@@ -86,7 +86,7 @@ public class Fenster extends JComponent implements ActionListener {
         // Score und Leben anzeigen
         g.setColor(Color.white);
         //System.out.println(g.getFont() + "");
-        g.drawString("Score: " + "100", s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
+        g.drawString("Score: " + p.get_score(), s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + "2", 100, s.spielfeld.length*s.raster_Groesse - 10);
         
         //PacMan
@@ -106,6 +106,7 @@ public class Fenster extends JComponent implements ActionListener {
 		repaint();
 		
 		p.wand_vor_figur();
+		p.punkte_fressen(s.spielfeld, s.raster_Groesse);
 		g1.richtungs_update(p.get_position());
 		g1.wand_vor_figur();
     }
