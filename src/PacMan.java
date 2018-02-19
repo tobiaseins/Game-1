@@ -38,7 +38,7 @@ public class PacMan extends Figuren{
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {
 		try {
-			if(spielfeld[get_position().y/raster_Groesse][get_position().x/get_radius()] == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
+			if(spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
 				spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] = 0;
 				this.set_score(this.get_score()+100);
 			}
