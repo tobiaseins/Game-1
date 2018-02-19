@@ -31,10 +31,10 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 switch( keyCode ) { 
-                    case KeyEvent.VK_UP: key = 1; p.richtungs_update(1); break;
-                    case KeyEvent.VK_RIGHT: key = 2; p.richtungs_update(2); break;
-                    case KeyEvent.VK_DOWN: key = 3; p.richtungs_update(3); break;
-                    case KeyEvent.VK_LEFT: key = 4; p.richtungs_update(4); break;
+                    case KeyEvent.VK_UP: key = 2; p.richtungs_update(key); break;
+                    case KeyEvent.VK_RIGHT: key = 1; p.richtungs_update(key); break;
+                    case KeyEvent.VK_DOWN: key = 4; p.richtungs_update(key); break;
+                    case KeyEvent.VK_LEFT: key = 3; p.richtungs_update(key); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -92,7 +92,7 @@ public class Fenster extends JComponent implements ActionListener {
         //PacMan
         g.setColor(p.get_farbe());
 	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
-	              45 + p.get_bewegungsrichtung(), 360-2*p.get_bewegungsrichtung());
+	              45 + 90*(p.get_bewegungsrichtung()-1), 275);
 	    
 	    
 	    //Geist
