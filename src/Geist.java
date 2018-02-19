@@ -67,20 +67,20 @@ public class Geist extends Figuren {
 		
 		
 		
-		public boolean wand_vor_geist() {
+		public boolean wand_vor_geist(int[][] spielfeld, int raster_Groesse) {
 							
 			switch(this.get_bewegungsrichtung()) {
 				case 1://rechts
-		    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][this.get_position().x/s.raster_Groesse + 1] == 1) wand = true;
+		    		if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) wand = true;
 		    		break;
 		    	case 3://links
-		    		if (s.spielfeld[this.get_position().y/s.raster_Groesse][(this.get_position().x - 1)/s.raster_Groesse] == 1) wand = true;
+		    		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) wand = true;
 		    		break;
 		    	case 2://oben
-		    		if (s.spielfeld[(this.get_position().y - 1)/s.raster_Groesse][this.get_position().x/s.raster_Groesse] == 1) wand = true;
+		    		if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) wand = true;
 		    		break;
 		    	case 4://unten
-		    		if (s.spielfeld[this.get_position().y/s.raster_Groesse + 1][this.get_position().x/s.raster_Groesse] == 1) wand = true;
+		    		if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) wand = true;
 		    		break;
 		    	default:
 		    		break;

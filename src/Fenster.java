@@ -7,7 +7,7 @@ public class Fenster extends JComponent implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	public static int key = 0; // 0: nichts, 1: UP, 2: RIGHT, 3: DOWN, 4: LEFT
 	public static Spielfeld s = new Spielfeld();
-	public static PacMan p = new PacMan();
+	public static PacMan p = new PacMan(s.raster_Groesse);
 	public static Geist g1 = new Geist(new Point(14*s.raster_Groesse,9*s.raster_Groesse), 1, Color.RED);
 	
 	public static int fps = 24; // Bilder pro Sekunde
@@ -105,9 +105,9 @@ public class Fenster extends JComponent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 		
-		p.wand_vor_figur();
+		p.wand_vor_figur(s.spielfeld, s.raster_Groesse);
 		p.punkte_fressen(s.spielfeld, s.raster_Groesse);
 		g1.richtungs_update(p.get_position());
-		g1.wand_vor_figur();
+		g1.wand_vor_figur(s.spielfeld, s.raster_Groesse);
     }
 };
