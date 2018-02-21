@@ -74,7 +74,7 @@ public class Geist extends Figuren {
 		set_position(14*raster_Groesse,9*raster_Groesse);
 		set_start(true);
 		set_bewegungsrichtung(2);
-		set_soll_richtung(2);
+		set_soll_richtung(2); 
 	}
 		
 		
