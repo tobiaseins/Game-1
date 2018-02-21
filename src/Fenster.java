@@ -131,10 +131,11 @@ public class Fenster extends JComponent implements ActionListener {
 		p.leben_verlieren(s.spielfeld, g2.get_position(), s.raster_Groesse) ||
 		p.leben_verlieren(s.spielfeld, g3.get_position(), s.raster_Groesse) ||
 		p.leben_verlieren(s.spielfeld, g4.get_position(), s.raster_Groesse)) {
-			g1.set_position(14*s.raster_Groesse,9*s.raster_Groesse);
-			g2.set_position(14*s.raster_Groesse,9*s.raster_Groesse);
-			g3.set_position(14*s.raster_Groesse,9*s.raster_Groesse);
-			g4.set_position(14*s.raster_Groesse,9*s.raster_Groesse);
+			count = 0;
+			g1.reset(s.raster_Groesse);
+			g2.reset(s.raster_Groesse);
+			g3.reset(s.raster_Groesse);
+			g4.reset(s.raster_Groesse);
 		}
 		g1.richtungs_update(p.get_position());
 		g1.wand_vor_figur(s.spielfeld, s.raster_Groesse);
