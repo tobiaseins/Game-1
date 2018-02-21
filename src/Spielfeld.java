@@ -5,7 +5,7 @@ public class Spielfeld {
 	public int[] farbe_Geister_Waende = {182,30,24};
 	public int raster_Groesse = 30;
 
-	//Spielfeld 1	
+	//Spielfeld1 	
 	// 0 = leeres Feld; 1 = Wand; 2 = Punkt; 3 = Rote Linie; 4 = Warpfeld
 	protected static int[][] spielfeld3 = {
 			       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
