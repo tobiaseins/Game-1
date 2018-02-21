@@ -28,12 +28,29 @@ public class PacMan extends Figuren{
 
 	
 	// Leben verlieren Funktion
-	public void leben_verlieren () {
+	public boolean leben_verlieren (int[][] spielfeld, Point geist_position, int raster_Groesse) {
+		boolean abc = false;
+		try {
+			if((int) (this.get_position().x + raster_Groesse/2)/raster_Groesse == (int) (geist_position.x + raster_Groesse/2)/raster_Groesse && 
+					(int) (this.get_position().y + raster_Groesse/2)/raster_Groesse == (int) (geist_position.y + raster_Groesse/2)/raster_Groesse) {
+				abc = true;
+			}
+		} catch(ArrayIndexOutOfBoundsException exception) {
+			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
+		}
+		return abc;
 		
 	}
 	
 	public void richtungs_update(int x) {
 		this.set_soll_richtung(x);
+	}
+	
+	public void reset(int raster_Groesse) {
+		set_leben(this.get_leben()-1);
+		set_position(19*raster_Groesse,19*raster_Groesse);
+		set_bewegungsrichtung(2);
+		set_soll_richtung(1);
 	}
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {

@@ -122,6 +122,7 @@ public abstract class Figuren{				// extends Fenster ???, Warum sollte Figuren v
 	
 	//public void abstract animation(); 
 	public abstract void richtungs_update(int x); //abstrakte Methode
+	public abstract void reset(int raster_Groesse);
 	
 	
 	// Getter
