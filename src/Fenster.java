@@ -39,6 +39,7 @@ public class Fenster extends JComponent implements ActionListener {
                     case KeyEvent.VK_RIGHT: key = 1; p.richtungs_update(key); break;
                     case KeyEvent.VK_DOWN: key = 4; p.richtungs_update(key); break;
                     case KeyEvent.VK_LEFT: key = 3; p.richtungs_update(key); break;
+                    case KeyEvent.VK_SPACE: if (p.tot()) /*game_reset();*/ break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -83,6 +84,10 @@ public class Fenster extends JComponent implements ActionListener {
                 	g.setColor(new Color(s.get_farbe_Geister_Waende()[0],s.get_farbe_Geister_Waende()[1],s.get_farbe_Geister_Waende()[2]));
                     int c = s.raster_Groesse/3;
                     g.fillRect(b*s.raster_Groesse + 1, a*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, s.raster_Groesse, s.raster_Groesse/c);
+                } else if(s.spielfeld[a][b] == 5) {
+                    // Kirsche
+                	g.setColor(new Color(s.get_farbe_Kirsche()[0],s.get_farbe_Kirsche()[1],s.get_farbe_Kirsche()[2]));
+                    g.fillRect(b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse);
                 }
             }
         }

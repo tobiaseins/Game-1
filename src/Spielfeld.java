@@ -3,6 +3,7 @@ public class Spielfeld {
 	public int[] farbe_Punkte = {255,255,255};
 	public int[] farbe_Waende = {24,30,182};
 	public int[] farbe_Geister_Waende = {182,30,24};
+	public int[] farbe_Kirsche = {255,0,0};
 	public int raster_Groesse = 30;
 
 	//Spielfeld1 	
@@ -101,4 +102,5 @@ public class Spielfeld {
 	public int[] get_farbe_Punkte() {return farbe_Punkte;}
 	public int[] get_farbe_Waende() {return farbe_Waende;}
 	public int[] get_farbe_Geister_Waende() {return farbe_Geister_Waende;}
+	public int[] get_farbe_Kirsche() {return farbe_Kirsche;}
 }
