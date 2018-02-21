@@ -70,6 +70,12 @@ public class Geist extends Figuren {
 			}
 		return img;}
 		
+	public void reset(int raster_Groesse) {
+		set_position(14*raster_Groesse,9*raster_Groesse);
+		set_start(true);
+		set_bewegungsrichtung(2);
+		set_soll_richtung(2); 
+	}
 		
 		
 	public void wand_vor_geist(int count, int[][] spielfeld, int raster_Groesse) {
