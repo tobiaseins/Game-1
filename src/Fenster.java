@@ -132,6 +132,7 @@ public class Fenster extends JComponent implements ActionListener {
 		p.leben_verlieren(s.spielfeld, g3.get_position(), s.raster_Groesse) ||
 		p.leben_verlieren(s.spielfeld, g4.get_position(), s.raster_Groesse)) {
 			count = 0;
+			p.reset(s.raster_Groesse);
 			g1.reset(s.raster_Groesse);
 			g2.reset(s.raster_Groesse);
 			g3.reset(s.raster_Groesse);
