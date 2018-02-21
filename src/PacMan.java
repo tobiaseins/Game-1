@@ -29,17 +29,25 @@ public class PacMan extends Figuren{
 	
 	// Leben verlieren Funktion
 	public boolean leben_verlieren (int[][] spielfeld, Point geist_position, int raster_Groesse) {
-		boolean abc = false;
+		boolean lebenVerloren = false;
 		try {
 			if((int) (this.get_position().x + raster_Groesse/2)/raster_Groesse == (int) (geist_position.x + raster_Groesse/2)/raster_Groesse && 
 					(int) (this.get_position().y + raster_Groesse/2)/raster_Groesse == (int) (geist_position.y + raster_Groesse/2)/raster_Groesse) {
-				abc = true;
+				lebenVerloren = true;
 			}
 		} catch(ArrayIndexOutOfBoundsException exception) {
 			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
 		}
-		return abc;
+		return lebenVerloren;
 		
+	}
+	
+	public boolean tot() {
+		boolean sehrTot = false;
+		if(this.get_leben() == -1) {
+			sehrTot = true;
+		}
+		return sehrTot;
 	}
 	
 	public void richtungs_update(int x) {
@@ -54,10 +62,15 @@ public class PacMan extends Figuren{
 	}
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {
+		int punkt = spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse]; 
 		try {
-			if(spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
+			if(punkt == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
 				spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] = 0;
 				this.set_score(this.get_score()+100);
+			}
+			if(punkt == 5  && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
+				spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] = 0;
+				this.set_score(this.get_score()+500);
 			}
 			
 		} catch(ArrayIndexOutOfBoundsException exception) {
