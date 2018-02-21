@@ -28,21 +28,29 @@ public class PacMan extends Figuren{
 
 	
 	// Leben verlieren Funktion
-	public void leben_verlieren (int[][] spielfeld, Point geist_position, int raster_Groesse) {
+	public boolean leben_verlieren (int[][] spielfeld, Point geist_position, int raster_Groesse) {
+		boolean abc = false;
 		try {
 			if((int) (this.get_position().x + raster_Groesse/2)/raster_Groesse == (int) (geist_position.x + raster_Groesse/2)/raster_Groesse && 
 					(int) (this.get_position().y + raster_Groesse/2)/raster_Groesse == (int) (geist_position.y + raster_Groesse/2)/raster_Groesse) {
-				this.set_leben(this.get_leben()-1);
-				this.set_position(19*raster_Groesse,19*raster_Groesse);
+				abc = true;
 			}
 		} catch(ArrayIndexOutOfBoundsException exception) {
 			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
 		}
+		return abc;
 		
 	}
 	
 	public void richtungs_update(int x) {
 		this.set_soll_richtung(x);
+	}
+	
+	public void reset(int raster_Groesse) {
+		set_leben(this.get_leben()-1);
+		set_position(19*raster_Groesse,19*raster_Groesse);
+		set_bewegungsrichtung(2);
+		set_soll_richtung(1);
 	}
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {
@@ -57,12 +65,12 @@ public class PacMan extends Figuren{
 		}
 	}
 	
-	public PacMan() {
-		this.set_position(19*s.raster_Groesse,19*s.raster_Groesse);
+	public PacMan(int raster_Groesse) {
+		this.set_position(19*raster_Groesse,19*raster_Groesse);
 	    this.set_geschwindigkeit(5);
 	    this.set_bewegungsrichtung(2);
 	    this.set_farbe(Color.yellow);
-	    this.set_radius(s.raster_Groesse *5/6);
+	    this.set_radius(raster_Groesse *5/6);
 	    this.set_soll_richtung(1);
 	    this.set_score(0);
 	    //set_soundplay(boolean tof);		-> wird woanders festgelegt
