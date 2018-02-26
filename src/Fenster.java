@@ -49,15 +49,15 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyTyped(KeyEvent e) {
                 //System.out.println(e.getKeyChar() + " typed");
             }
-		});			// FÃ¼ge die Tastenerkennung hinzu
+		});			// FÃƒÂ¼ge die Tastenerkennung hinzu
 		
-		w.setSize(Groesse.x,Groesse.y);	// GrÃ¶ÃŸe festlegen
+		w.setSize(Groesse.x,Groesse.y);	// GrÃƒÂ¶ÃƒÅ¸e festlegen
     	w.setVisible(true);				// sichtbar machen
     	
-    	// Timer für das Neuzeichnen --> ersetzt das repaint() in
+    	// Timer fÃ¼r das Neuzeichnen --> ersetzt das repaint() in
     	// der Methode paintComponent(Graphics g)
     	// Hierdurch werden weniger Ressourcen verbraucht und die
-    	// Animation läuft flüssiger
+    	// Animation lÃ¤uft flÃ¼ssiger
         Timer t = new Timer(refresh, game);
         t.start();
     }
@@ -67,7 +67,7 @@ public class Fenster extends JComponent implements ActionListener {
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
         g.fillRect(0, 0, s.spielfeld[0].length*s.raster_Groesse, s.spielfeld.length*s.raster_Groesse);
         
-        // WÃƒÂ¤nde und Punkte
+        // WÃƒÆ’Ã‚Â¤nde und Punkte
         for(int a = 0; a<s.spielfeld.length; a++) {
             for(int b = 0; b<s.spielfeld[0].length; b++) {
                 if(s.spielfeld[a][b] == 1) {
@@ -98,10 +98,17 @@ public class Fenster extends JComponent implements ActionListener {
         g.drawString("Score: " + p.get_score(), s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + p.get_leben(), 100, s.spielfeld.length*s.raster_Groesse - 10);
         
+        // Pacman Animation
+        int speed = s.raster_Groesse/2;        
+        int count2 = count*speed;
+        int offenWinkel = count2%90;
+        if(offenWinkel>45) offenWinkel = 45-count2%45;
+        
         //PacMan
         g.setColor(p.get_farbe());
-	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
-	              45 + 90*(p.get_bewegungsrichtung()-1), 275);
+	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, 
+	    		p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
+	              45 + 90*(p.get_bewegungsrichtung()-1)-offenWinkel, 275+offenWinkel*2);
 	    
 	    
 	    //Geist
@@ -129,7 +136,7 @@ public class Fenster extends JComponent implements ActionListener {
     		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
     		g.drawString("GAME OVER", 25, getHeight()/2);
     		g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-    		g.drawString("Dr�cke Leertaste zum Neustarten", getWidth()/2-300, getHeight()/2+50);
+    		g.drawString("Drücke Leertaste zum Neustarten", getWidth()/2-300, getHeight()/2+50);
     	}
     }
     
