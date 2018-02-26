@@ -6,7 +6,7 @@ import java.net.URL;
 import javax.sound.sampled.*;
 
 public class Audio {
-    URL url;				// Wo der Audio Clip gespeichert ist
+    URL url;				// Wo der Audio Clip gespeichert ist!
     Clip clip;				// Der Clip, der erstellt wird
 
     // Konstruktor: Es wird ein neues Audio Objekt erstellt
