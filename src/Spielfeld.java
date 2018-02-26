@@ -5,6 +5,7 @@ public class Spielfeld {
 	public int[] farbe_Geister_Waende = {182,30,24};
 	public int[] farbe_Kirsche = {255,0,0};
 	public int raster_Groesse = 30;
+	
 
 	//Spielfeld1 	
 	// 0 = leeres Feld; 1 = Wand; 2 = Punkt; 3 = Rote Linie; 4 = Warpfeld 5 = Kirsche
@@ -94,7 +95,40 @@ public class Spielfeld {
 		};	*/
 	
 	
+	public int punkte_zaehlen(int[][] spielfeld) {
+		
+		int anzahl_punkte = 0;
+		
+		 for(int zeilen = 0; zeilen < spielfeld.length; zeilen++) {
+		 
+			for(int spalten = 0; spalten < spielfeld[zeilen].length; spalten++) {
+				
+				if(spielfeld[zeilen][spalten] == 2) {
+				
+					anzahl_punkte++;
+				}
+			}
+		}
+		
+		return anzahl_punkte;
+	}
 	
+	public int kirschen_zaehlen(int[][] spielfeld) {
+		int anzahl_kirschen = 0;
+		
+		 for(int zeilen = 0; zeilen < spielfeld.length; zeilen++) {
+		 
+			for(int spalten = 0; spalten < spielfeld[zeilen].length; spalten++) {
+				
+				if(spielfeld[zeilen][spalten] == 5) {
+				
+					anzahl_kirschen++;
+					
+				}
+			}
+		 }
+		 return anzahl_kirschen;
+	}
 	
 				
 	// Getter Methoden unnötig wenn Variablen eh public sind
