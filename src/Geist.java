@@ -17,7 +17,7 @@ public class Geist extends Figuren {
 	BufferedImage imgup_2 = null;
 	BufferedImage imgdown_2 = null;
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
-	public boolean wand;
+	public int wand;
 	public boolean start = true;
 	
 	public void richtungs_update(int x) {
@@ -38,12 +38,12 @@ public class Geist extends Figuren {
 	
 	// Set-Methoden
 	public void set_geist_art(int  geist_art) {this.geist_art = geist_art;}
-	public void set_wand(boolean wand) {this.wand = wand;}
+	public void set_wand(int wand) {this.wand = wand;}
 	public void set_start(boolean start) {this.start = start;}
 	
 	// Get-Methoden
 	public int get_geist_art() {return this.geist_art;}
-	public boolean get_wand() {return this.wand;}
+	public int get_wand() {return this.wand;}
 	public boolean get_start() {return this.start;}
 
 	
@@ -74,11 +74,11 @@ public class Geist extends Figuren {
 		set_position(14*raster_Groesse,9*raster_Groesse);
 		set_start(true);
 		set_bewegungsrichtung(2);
-		set_soll_richtung(2);
+		set_soll_richtung(2); 
 	}
 		
 		
-	public boolean wand_vor_geist(int count, int[][] spielfeld, int raster_Groesse) {
+	public void wand_vor_geist(int count, int[][] spielfeld, int raster_Groesse) {
 		if(this.get_start()) {
 			if(count <= 3*raster_Groesse/this.get_geschwindigkeit()) {
 				this.set_bewegungsrichtung(2);
@@ -91,26 +91,30 @@ public class Geist extends Figuren {
 		
 		switch(this.get_bewegungsrichtung()) {
 			case 1://rechts
-				if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) return true;
+				if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) ; 
+					this.set_wand(1);
 				break;
 			case 3://links
-		   		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) return true;
+		   		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) ;
+		   		this.set_wand(1);
 		    	break;
 		    case 2://oben
-		    	if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) return true;
+		    	if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) ;
+		    	this.set_wand(1);
 		    	break;
 		    case 4://unten
-		    	if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) return true;
+		    	if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) ;
+		    	this.set_wand(1);
 		    	break;
 		    default:
 		    		//wand = false;
 		}
-		return false;
+		this.set_wand(0);
 	}
 	
 	public void richtungs_update(Point PacPosition) { //RentomieZa Bewegungsrichtung
 		Random ran = new Random();
-		if(!this.get_wand() && !this.get_start()) {
+		if(this.get_wand() == 1 && !this.get_start()) {
 			Point Unterschied = new Point(PacPosition.x - this.get_position().x, PacPosition.y - this.get_position().y);
 			int Quadrant = 0; 										// 1: unten rechts, 2: oben rechts, 3: oben links, 4: unten links
 			if(Unterschied.x >= 0 && Unterschied.y >= 0) Quadrant = 1;
