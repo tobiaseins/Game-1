@@ -97,8 +97,15 @@ public class Fenster extends JComponent implements ActionListener {
                 } else if(s.spielfeld[a][b] == 5) {
                     // Kirsche
                 	g.setColor(new Color(s.get_farbe_Kirsche()[0],s.get_farbe_Kirsche()[1],s.get_farbe_Kirsche()[2]));
-                    g.fillRect(b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse);
-                }
+                	BufferedImage kirschenimg = null;
+                	try { //Lade das Bild
+    	    			kirschenimg = ImageIO.read(new File("../PacMan/src/Bilder/kirschen.png"));
+    	    			g.drawImage(kirschenimg, b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse, null);
+    	    		} catch (IOException e) {
+				//Wenn Bild nicht funktioniert mache einfaches Rechteck als Kirsche
+    	    			g.fillRect(b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse);
+    	    		}
+    	    	}
             }
         }
         
