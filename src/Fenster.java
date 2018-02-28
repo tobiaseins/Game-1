@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Fenster extends JComponent implements ActionListener {
@@ -49,15 +53,15 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyTyped(KeyEvent e) {
                 //System.out.println(e.getKeyChar() + " typed");
             }
-		});			// FÃƒÂ¼ge die Tastenerkennung hinzu
+		});			// FÃƒÆ’Ã‚Â¼ge die Tastenerkennung hinzu
 		
-		w.setSize(Groesse.x,Groesse.y);	// GrÃƒÂ¶ÃƒÅ¸e festlegen
+		w.setSize(Groesse.x,Groesse.y);	// GrÃƒÆ’Ã‚Â¶ÃƒÆ’Ã…Â¸e festlegen
     	w.setVisible(true);				// sichtbar machen
     	
-    	// Timer fÃ¼r das Neuzeichnen --> ersetzt das repaint() in
+    	// Timer fÃƒÂ¼r das Neuzeichnen --> ersetzt das repaint() in
     	// der Methode paintComponent(Graphics g)
     	// Hierdurch werden weniger Ressourcen verbraucht und die
-    	// Animation lÃ¤uft flÃ¼ssiger
+    	// Animation lÃƒÂ¤uft flÃƒÂ¼ssiger
         Timer t = new Timer(refresh, game);
         t.start();
     }
@@ -77,7 +81,7 @@ public class Fenster extends JComponent implements ActionListener {
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
         g.fillRect(0, 0, s.spielfeld[0].length*s.raster_Groesse, s.spielfeld.length*s.raster_Groesse);
         
-        // WÃƒÆ’Ã‚Â¤nde und Punkte
+        // WÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¤nde und Punkte
         for(int a = 0; a<s.spielfeld.length; a++) {
             for(int b = 0; b<s.spielfeld[0].length; b++) {
                 if(s.spielfeld[a][b] == 1) {
@@ -130,30 +134,54 @@ public class Fenster extends JComponent implements ActionListener {
 	    
 	    //Geist
 	    g.setColor(g1.get_farbe());
-	    //g.drawImage(g1.animation(), g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius(), null);
-	    g.fillRect(g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius());
+	    BufferedImage g1img = null;
+    	try { //Lade das Bild
+			g1img = ImageIO.read(new File("../PacMan/src/Bilder/crimsonjaeger.png"));
+			g.drawImage(g1img, g1.get_position().x-g1.get_radius()/2, g1.get_position().y-g1.get_radius()/2, g1.get_radius()*2, g1.get_radius()*2, null);
+		} catch (IOException e) {
+		//Wenn Bild nicht funktioniert mache einfaches Rechteck als Geist
+			g.fillRect(g1.get_position().x, g1.get_position().y, g1.get_radius(), g1.get_radius());
+		}
 	    
-	  //Geist
+	    //Geist
 	    g.setColor(g2.get_farbe());
-	    //g.drawImage(g2.animation(), g2.get_position().x, g2.get_position().y, g2.get_radius(), g2.get_radius(), null);
-	    g.fillRect(g2.get_position().x, g2.get_position().y, g2.get_radius(), g2.get_radius());
+	    BufferedImage g2img = null;
+	    try { //Lade das Bild
+			g2img = ImageIO.read(new File("../PacMan/src/Bilder/cyanschrecken.png"));
+			g.drawImage(g2img, g2.get_position().x-g2.get_radius()/2, g2.get_position().y-g2.get_radius()/2, g2.get_radius()*2, g2.get_radius()*2, null);
+		} catch (IOException e) {
+		//Wenn Bild nicht funktioniert mache einfaches Rechteck als Geist
+			g.fillRect(g2.get_position().x, g2.get_position().y, g2.get_radius(), g2.get_radius());
+		}
 	    
-	  //Geist
+	    //Geist
 	    g.setColor(g3.get_farbe());
-	    //g.drawImage(g3.animation(), g3.get_position().x, g3.get_position().y, g3.get_radius(), g3.get_radius(), null);
-	    g.fillRect(g3.get_position().x, g3.get_position().y, g3.get_radius(), g3.get_radius());
+	    BufferedImage g3img = null;
+	    try { //Lade das Bild
+			g3img = ImageIO.read(new File("../PacMan/src/Bilder/rosaschleicher.png"));
+			g.drawImage(g3img, g3.get_position().x-g3.get_radius()/2, g3.get_position().y-g3.get_radius()/2, g3.get_radius()*2, g3.get_radius()*2, null);
+		} catch (IOException e) {
+		//Wenn Bild nicht funktioniert mache einfaches Rechteck als Geist
+			g.fillRect(g3.get_position().x, g3.get_position().y, g3.get_radius(), g3.get_radius());
+		}
 	    
-	  //Geist
+	    //Geist
 	    g.setColor(g4.get_farbe());
-	    //g.drawImage(g4.animation(), g4.get_position().x, g4.get_position().y, g4.get_radius(), g4.get_radius(), null);
-	    g.fillRect(g4.get_position().x, g4.get_position().y, g4.get_radius(), g4.get_radius());
+	    BufferedImage g4img = null;
+	    try { //Lade das Bild
+			g4img = ImageIO.read(new File("../PacMan/src/Bilder/scharlachwaechter.png"));
+			g.drawImage(g4img, g4.get_position().x-g4.get_radius()/2, g4.get_position().y-g4.get_radius()/2, g4.get_radius()*2, g4.get_radius()*2, null);
+		} catch (IOException e) {
+		//Wenn Bild nicht funktioniert mache einfaches Rechteck als Geist
+			g.fillRect(g4.get_position().x, g4.get_position().y, g4.get_radius(), g4.get_radius());
+		}
 	    
 	    if(p.tot()) {
     		g.setColor(Color.RED);
     		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
     		g.drawString("GAME OVER", 25, getHeight()/2);
     		g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-    		g.drawString("Drücke Leertaste zum Neustarten", getWidth()/2-300, getHeight()/2+50);
+    		g.drawString("DrÃ¼cke Leertaste zum Neustarten", getWidth()/2-300, getHeight()/2+50);
     	}
     }
     
