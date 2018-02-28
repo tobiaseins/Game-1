@@ -39,7 +39,7 @@ public class Fenster extends JComponent implements ActionListener {
                     case KeyEvent.VK_RIGHT: key = 1; p.richtungs_update(key); break;
                     case KeyEvent.VK_DOWN: key = 4; p.richtungs_update(key); break;
                     case KeyEvent.VK_LEFT: key = 3; p.richtungs_update(key); break;
-                    case KeyEvent.VK_SPACE: if (p.tot()) /*game_reset();*/ break;
+                    case KeyEvent.VK_SPACE: if (p.tot()) game_reset(); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -62,6 +62,16 @@ public class Fenster extends JComponent implements ActionListener {
         t.start();
     }
 
+    public static void game_reset() {
+    	s = new Spielfeld();
+    	p.gameReset(s.raster_Groesse);
+    	g1.reset(s.raster_Groesse);
+    	g2.reset(s.raster_Groesse);
+    	g3.reset(s.raster_Groesse);
+    	g4.reset(s.raster_Groesse);
+    	
+    }
+    
     protected void paintComponent(Graphics g) {
     	// Hintergrund
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
@@ -98,10 +108,17 @@ public class Fenster extends JComponent implements ActionListener {
         g.drawString("Score: " + p.get_score(), s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + p.get_leben(), 100, s.spielfeld.length*s.raster_Groesse - 10);
         
+        // Pacman Animation
+        int speed = s.raster_Groesse/2;        
+        int count2 = count*speed;
+        int offenWinkel = count2%90;
+        if(offenWinkel>45) offenWinkel = 45-count2%45;
+        
         //PacMan
         g.setColor(p.get_farbe());
-	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
-	              45 + 90*(p.get_bewegungsrichtung()-1), 275);
+	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, 
+	    		p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
+	              45 + 90*(p.get_bewegungsrichtung()-1)-offenWinkel, 275+offenWinkel*2);
 	    
 	    
 	    //Geist

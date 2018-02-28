@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 
 public class PacMan extends Figuren{
-	// Variablen nur für Pacman
+	// Variablen nur fÃ¼r Pacman
 	public int Winkel_min;
 	public int Winkel_max;
 	public int leben;
@@ -60,6 +60,22 @@ public class PacMan extends Figuren{
 		set_bewegungsrichtung(2);
 		set_soll_richtung(1);
 	}
+
+	public void gameReset(int raster_Groesse) {
+		this.set_position(19*raster_Groesse,19*raster_Groesse);
+	    this.set_geschwindigkeit(5);
+	    this.set_bewegungsrichtung(2);
+	    this.set_farbe(Color.yellow);
+	    this.set_radius(raster_Groesse *5/6);
+	    this.set_soll_richtung(1);
+	    this.set_score(0);
+	    this.set_Winkel_min(45);
+	    this.set_Winkel_max(275);
+	    this.set_leben(2);
+	    this.set_mund_offen(true);
+	    this.set_kontakt_mit_geist(false);
+	}
+	
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {
 		int punkt = spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse]; 
