@@ -19,6 +19,7 @@ public class Geist extends Figuren {
 	public int geist_art; // 1 = normal; 2 = aggressiv; 3 = ...
 	public int wand;
 	public boolean start = true;
+	public int quadrant;
 	
 	public void richtungs_update(int x) {
 		this.set_soll_richtung(x);
@@ -32,7 +33,7 @@ public class Geist extends Figuren {
 		this.set_geist_art(geist_art);
 		this.set_bewegungsrichtung(2);
 		this.set_soll_richtung(2);
-		this.set_geschwindigkeit(6); // eventuell ändern
+		this.set_geschwindigkeit(6); // eventuell Ã¤ndern
 		
 	}
 	
@@ -40,11 +41,13 @@ public class Geist extends Figuren {
 	public void set_geist_art(int  geist_art) {this.geist_art = geist_art;}
 	public void set_wand(int wand) {this.wand = wand;}
 	public void set_start(boolean start) {this.start = start;}
-	
+	public void set_quadrant(int quadrant) {this.quadrant = quadrant;}
+	 
 	// Get-Methoden
 	public int get_geist_art() {return this.geist_art;}
 	public int get_wand() {return this.wand;}
 	public boolean get_start() {return this.start;}
+	public int get_quadrant() {return this.quadrant;}
 
 	
 	public BufferedImage animation() {								// geister Blickrichtung	
@@ -73,7 +76,6 @@ public class Geist extends Figuren {
 	public void reset(int raster_Groesse) {
 		set_position(14*raster_Groesse,9*raster_Groesse);
 		set_start(true);
-		set_bewegungsrichtung(2);
 		set_soll_richtung(2); 
 	}
 		
@@ -81,52 +83,77 @@ public class Geist extends Figuren {
 	public void wand_vor_geist(int count, int[][] spielfeld, int raster_Groesse) {
 		if(this.get_start()) {
 			if(count <= 3*raster_Groesse/this.get_geschwindigkeit()) {
-				this.set_bewegungsrichtung(2);
+				
 				this.set_soll_richtung(2);
 			} else if(count <= 5*raster_Groesse/this.get_geschwindigkeit()) {
-				this.set_bewegungsrichtung(1);
+				
 				this.set_soll_richtung(1);
 			} else this.set_start(false);
 		}	
 		
 		switch(this.get_bewegungsrichtung()) {
 			case 1://rechts
-				if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) ; 
-					this.set_wand(1);
-				break;
+				if(spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1 && spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) {this.set_wand(2); System.out.print("2"); }//Rechtsoben
+				else if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1 && spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) {this.set_wand(3); System.out.print("3");} //Rechtsunten
+				else if (spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1){ this.set_wand(1); System.out.print("1");}
+				else this.set_wand(0);
+					break;
 			case 3://links
-		   		if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) ;
-		   		this.set_wand(1);
-		    	break;
+				if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1 && spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) this.set_wand(4); //linksoben
+				else if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1 && spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) this.set_wand(5); //linksunten
+				else if (spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) this.set_wand(1);
+		   		else this.set_wand(0);
+		   			break;
 		    case 2://oben
-		    	if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) ;
-		    	this.set_wand(1);
-		    	break;
+		    	if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1  && spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) this.set_wand(2); //obenrechts
+		    	else if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1 && spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) this.set_wand(4); //obenlinks
+		    	else if (spielfeld[(this.get_position().y - 1)/raster_Groesse][this.get_position().x/raster_Groesse] == 1) this.set_wand(1);
+		    	else this.set_wand(0);
+	    			break;
 		    case 4://unten
-		    	if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) ;
-		    	this.set_wand(1);
-		    	break;
+		    	if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1 && spielfeld[this.get_position().y/raster_Groesse][this.get_position().x/raster_Groesse + 1] == 1) this.set_wand(3); //untenrechts
+		    	else if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1 && spielfeld[this.get_position().y/raster_Groesse][(this.get_position().x - 1)/raster_Groesse] == 1) this.set_wand(5);//untenlinks 
+		    	else if (spielfeld[this.get_position().y/raster_Groesse + 1][this.get_position().x/raster_Groesse] == 1) this.set_wand(1);
+		    	else this.set_wand(0);
+		    		break;
 		    default:
 		    		//wand = false;
 		}
-		this.set_wand(0);
+
 	}
+	
+	public void quadrant(Point PacPosition){
+		Point Unterschied = new Point(PacPosition.x - this.get_position().x, PacPosition.y - this.get_position().y);
+		int Quadrant = 0; 										// 1: unten rechts, 2: oben rechts, 3: oben links, 4: unten links
+		if(Unterschied.x >= 0 && Unterschied.y >= 0) this.set_quadrant(1);
+		if(Unterschied.x >= 0 && Unterschied.y <= 0) this.set_quadrant(2);
+		if(Unterschied.x <= 0 && Unterschied.y <= 0) this.set_quadrant(3);
+		if(Unterschied.x <= 0 && Unterschied.y >= 0) this.set_quadrant(4);}
 	
 	public void richtungs_update(Point PacPosition) { //RentomieZa Bewegungsrichtung
 		Random ran = new Random();
 		if(this.get_wand() == 1 && !this.get_start()) {
-			Point Unterschied = new Point(PacPosition.x - this.get_position().x, PacPosition.y - this.get_position().y);
-			int Quadrant = 0; 										// 1: unten rechts, 2: oben rechts, 3: oben links, 4: unten links
-			if(Unterschied.x >= 0 && Unterschied.y >= 0) Quadrant = 1;
-			if(Unterschied.x >= 0 && Unterschied.y <= 0) Quadrant = 2;
-			if(Unterschied.x <= 0 && Unterschied.y <= 0) Quadrant = 3;
-			if(Unterschied.x <= 0 && Unterschied.y >= 0) Quadrant = 4;
-			
-			if(Quadrant == 1) this.set_soll_richtung(ran.nextInt(2) * 3 + 1);
-			if(Quadrant == 2) this.set_soll_richtung(ran.nextInt(2) + 1);
-			if(Quadrant == 3) this.set_soll_richtung(ran.nextInt(2) + 2);
-			if(Quadrant == 4) this.set_soll_richtung(ran.nextInt(2) + 3);
+			if(this.get_quadrant() == 1) this.set_soll_richtung(ran.nextInt(2) * 3 + 1);
+			if(this.get_quadrant() == 2) this.set_soll_richtung(ran.nextInt(2) + 1);
+			if(this.get_quadrant() == 3) this.set_soll_richtung(ran.nextInt(2) + 2);
+			if(this.get_quadrant() == 4) this.set_soll_richtung(ran.nextInt(2) + 3);
 		}
+		else if(this.get_wand() == 2 && !this.get_start() && this.get_quadrant() == 1)this.set_soll_richtung(4);
+		else if(this.get_wand() == 2 && !this.get_start() && this.get_quadrant() == 2)this.set_soll_richtung(ran.nextInt(2) + 3);
+		else if(this.get_wand() == 2 && !this.get_start() && this.get_quadrant() == 3)this.set_soll_richtung(3);
+		else if(this.get_wand() == 2 && !this.get_start() && this.get_quadrant() == 4)this.set_soll_richtung(ran.nextInt(2) + 3);
+		else if(this.get_wand() == 3 && !this.get_start() && this.get_quadrant() == 1)this.set_soll_richtung(ran.nextInt(2) + 2);
+		else if(this.get_wand() == 3 && !this.get_start() && this.get_quadrant() == 2)this.set_soll_richtung(2);
+		else if(this.get_wand() == 3 && !this.get_start() && this.get_quadrant() == 3)this.set_soll_richtung(ran.nextInt(2) + 2);
+		else if(this.get_wand() == 3 && !this.get_start() && this.get_quadrant() == 4)this.set_soll_richtung(3);
+		else if(this.get_wand() == 4 && !this.get_start() && this.get_quadrant() == 1)this.set_soll_richtung(ran.nextInt(2) * 3 + 1);
+		else if(this.get_wand() == 4 && !this.get_start() && this.get_quadrant() == 2)this.set_soll_richtung(1);
+		else if(this.get_wand() == 4 && !this.get_start() && this.get_quadrant() == 3)this.set_soll_richtung(ran.nextInt(2) * 3 + 1);
+		else if(this.get_wand() == 4 && !this.get_start() && this.get_quadrant() == 4)this.set_soll_richtung(4);
+		else if(this.get_wand() == 5 && !this.get_start() && this.get_quadrant() == 1)this.set_soll_richtung(1);
+		else if(this.get_wand() == 5 && !this.get_start() && this.get_quadrant() == 2)this.set_soll_richtung(ran.nextInt(2) + 1);
+		else if(this.get_wand() == 5 && !this.get_start() && this.get_quadrant() == 3)this.set_soll_richtung(2);
+		else if(this.get_wand() == 5 && !this.get_start() && this.get_quadrant() == 4)this.set_soll_richtung(ran.nextInt(2) + 1);
 	}
 	
 }

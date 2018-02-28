@@ -191,6 +191,10 @@ public class Fenster extends JComponent implements ActionListener {
 		g4.richtungs_update(p.get_position());
 		g4.wand_vor_figur(s.spielfeld, s.raster_Groesse);
 		g4.wand_vor_geist(count, s.spielfeld, s.raster_Groesse);
+		g1.quadrant(p.get_position());
+		g2.quadrant(p.get_position());
+		g3.quadrant(p.get_position());
+		g4.quadrant(p.get_position());
 		}
     }
 };
