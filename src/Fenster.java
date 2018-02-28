@@ -39,6 +39,7 @@ public class Fenster extends JComponent implements ActionListener {
                     case KeyEvent.VK_RIGHT: key = 1; p.richtungs_update(key); break;
                     case KeyEvent.VK_DOWN: key = 4; p.richtungs_update(key); break;
                     case KeyEvent.VK_LEFT: key = 3; p.richtungs_update(key); break;
+                    case KeyEvent.VK_SPACE: if (p.tot()) game_reset(); break;
                 }
                 //System.out.println(e.getKeyChar() + " pressed");
             }
@@ -48,25 +49,35 @@ public class Fenster extends JComponent implements ActionListener {
             public void keyTyped(KeyEvent e) {
                 //System.out.println(e.getKeyChar() + " typed");
             }
-		});			// FÃ¼ge die Tastenerkennung hinzu
+		});			// FÃƒÂ¼ge die Tastenerkennung hinzu
 		
-		w.setSize(Groesse.x,Groesse.y);	// GrÃ¶ÃŸe festlegen
+		w.setSize(Groesse.x,Groesse.y);	// GrÃƒÂ¶ÃƒÅ¸e festlegen
     	w.setVisible(true);				// sichtbar machen
     	
-    	// Timer für das Neuzeichnen --> ersetzt das repaint() in
+    	// Timer fÃ¼r das Neuzeichnen --> ersetzt das repaint() in
     	// der Methode paintComponent(Graphics g)
     	// Hierdurch werden weniger Ressourcen verbraucht und die
-    	// Animation läuft flüssiger
+    	// Animation lÃ¤uft flÃ¼ssiger
         Timer t = new Timer(refresh, game);
         t.start();
     }
 
+    public static void game_reset() {
+    	s = new Spielfeld();
+    	p.gameReset(s.raster_Groesse);
+    	g1.reset(s.raster_Groesse);
+    	g2.reset(s.raster_Groesse);
+    	g3.reset(s.raster_Groesse);
+    	g4.reset(s.raster_Groesse);
+    	
+    }
+    
     protected void paintComponent(Graphics g) {
     	// Hintergrund
         g.setColor(new Color(s.get_Hintergrundfarbe()[0], s.get_Hintergrundfarbe()[1], s.get_Hintergrundfarbe()[2]));
         g.fillRect(0, 0, s.spielfeld[0].length*s.raster_Groesse, s.spielfeld.length*s.raster_Groesse);
         
-        // WÃƒÂ¤nde und Punkte
+        // WÃƒÆ’Ã‚Â¤nde und Punkte
         for(int a = 0; a<s.spielfeld.length; a++) {
             for(int b = 0; b<s.spielfeld[0].length; b++) {
                 if(s.spielfeld[a][b] == 1) {
@@ -83,7 +94,18 @@ public class Fenster extends JComponent implements ActionListener {
                 	g.setColor(new Color(s.get_farbe_Geister_Waende()[0],s.get_farbe_Geister_Waende()[1],s.get_farbe_Geister_Waende()[2]));
                     int c = s.raster_Groesse/3;
                     g.fillRect(b*s.raster_Groesse + 1, a*s.raster_Groesse+s.raster_Groesse/2-s.raster_Groesse/c/2, s.raster_Groesse, s.raster_Groesse/c);
-                }
+                } else if(s.spielfeld[a][b] == 5) {
+                    // Kirsche
+                	g.setColor(new Color(s.get_farbe_Kirsche()[0],s.get_farbe_Kirsche()[1],s.get_farbe_Kirsche()[2]));
+                	BufferedImage kirschenimg = null;
+                	try { //Lade das Bild
+    	    			kirschenimg = ImageIO.read(new File("../PacMan/src/Bilder/kirschen.png"));
+    	    			g.drawImage(kirschenimg, b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse, null);
+    	    		} catch (IOException e) {
+				//Wenn Bild nicht funktioniert mache einfaches Rechteck als Kirsche
+    	    			g.fillRect(b*s.raster_Groesse, a*s.raster_Groesse, s.raster_Groesse, s.raster_Groesse);
+    	    		}
+    	    	}
             }
         }
         
@@ -93,10 +115,17 @@ public class Fenster extends JComponent implements ActionListener {
         g.drawString("Score: " + p.get_score(), s.spielfeld[0].length*s.raster_Groesse - 100, s.spielfeld.length*s.raster_Groesse - 10);
         g.drawString("Leben: " + p.get_leben(), 100, s.spielfeld.length*s.raster_Groesse - 10);
         
+        // Pacman Animation
+        int speed = s.raster_Groesse/2;        
+        int count2 = count*speed;
+        int offenWinkel = count2%90;
+        if(offenWinkel>45) offenWinkel = 45-count2%45;
+        
         //PacMan
         g.setColor(p.get_farbe());
-	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
-	              45 + 90*(p.get_bewegungsrichtung()-1), 275);
+	    g.fillArc(p.get_position().x + (s.raster_Groesse-p.get_radius())/2, 
+	    		p.get_position().y + (s.raster_Groesse-p.get_radius())/2, p.get_radius(), p.get_radius(),
+	              45 + 90*(p.get_bewegungsrichtung()-1)-offenWinkel, 275+offenWinkel*2);
 	    
 	    
 	    //Geist
@@ -118,11 +147,20 @@ public class Fenster extends JComponent implements ActionListener {
 	    g.setColor(g4.get_farbe());
 	    //g.drawImage(g4.animation(), g4.get_position().x, g4.get_position().y, g4.get_radius(), g4.get_radius(), null);
 	    g.fillRect(g4.get_position().x, g4.get_position().y, g4.get_radius(), g4.get_radius());
+	    
+	    if(p.tot()) {
+    		g.setColor(Color.RED);
+    		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
+    		g.drawString("GAME OVER", 25, getHeight()/2);
+    		g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+    		g.drawString("Drücke Leertaste zum Neustarten", getWidth()/2-300, getHeight()/2+50);
+    	}
     }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+		if(!p.tot()) {
 		count++;
 		
 		p.wand_vor_figur(s.spielfeld, s.raster_Groesse);
@@ -138,6 +176,9 @@ public class Fenster extends JComponent implements ActionListener {
 			g3.reset(s.raster_Groesse);
 			g4.reset(s.raster_Groesse);
 		}
+		if(p.tot()){
+			//System.exit(0);
+		};
 		g1.richtungs_update(p.get_position());
 		g1.wand_vor_figur(s.spielfeld, s.raster_Groesse);
 		g1.wand_vor_geist(count, s.spielfeld, s.raster_Groesse);
@@ -150,5 +191,10 @@ public class Fenster extends JComponent implements ActionListener {
 		g4.richtungs_update(p.get_position());
 		g4.wand_vor_figur(s.spielfeld, s.raster_Groesse);
 		g4.wand_vor_geist(count, s.spielfeld, s.raster_Groesse);
+		g1.quadrant(p.get_position());
+		g2.quadrant(p.get_position());
+		g3.quadrant(p.get_position());
+		g4.quadrant(p.get_position());
+		}
     }
 };

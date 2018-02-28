@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 
 public class PacMan extends Figuren{
-	// Variablen nur für Pacman
+	// Variablen nur fÃ¼r Pacman
 	public int Winkel_min;
 	public int Winkel_max;
 	public int leben;
@@ -29,17 +29,25 @@ public class PacMan extends Figuren{
 	
 	// Leben verlieren Funktion
 	public boolean leben_verlieren (int[][] spielfeld, Point geist_position, int raster_Groesse) {
-		boolean abc = false;
+		boolean lebenVerloren = false;
 		try {
 			if((int) (this.get_position().x + raster_Groesse/2)/raster_Groesse == (int) (geist_position.x + raster_Groesse/2)/raster_Groesse && 
 					(int) (this.get_position().y + raster_Groesse/2)/raster_Groesse == (int) (geist_position.y + raster_Groesse/2)/raster_Groesse) {
-				abc = true;
+				lebenVerloren = true;
 			}
 		} catch(ArrayIndexOutOfBoundsException exception) {
 			//Fehler("punkteFressen", "ArrayIndexOutOfBoundsException");
 		}
-		return abc;
+		return lebenVerloren;
 		
+	}
+	
+	public boolean tot() {
+		boolean sehrTot = false;
+		if(this.get_leben() == -1) {
+			sehrTot = true;
+		}
+		return sehrTot;
 	}
 	
 	public void richtungs_update(int x) {
@@ -52,12 +60,33 @@ public class PacMan extends Figuren{
 		set_bewegungsrichtung(2);
 		set_soll_richtung(1);
 	}
+
+	public void gameReset(int raster_Groesse) {
+		this.set_position(19*raster_Groesse,19*raster_Groesse);
+	    this.set_geschwindigkeit(5);
+	    this.set_bewegungsrichtung(2);
+	    this.set_farbe(Color.yellow);
+	    this.set_radius(raster_Groesse *5/6);
+	    this.set_soll_richtung(1);
+	    this.set_score(0);
+	    this.set_Winkel_min(45);
+	    this.set_Winkel_max(275);
+	    this.set_leben(2);
+	    this.set_mund_offen(true);
+	    this.set_kontakt_mit_geist(false);
+	}
+	
 	
 	public void punkte_fressen(int [][] spielfeld, int raster_Groesse) {
+		int punkt = spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse]; 
 		try {
-			if(spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
+			if(punkt == 2 && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
 				spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] = 0;
 				this.set_score(this.get_score()+100);
+			}
+			if(punkt == 5  && get_position().x%raster_Groesse == 0 && get_position().y%raster_Groesse == 0) {
+				spielfeld[get_position().y/raster_Groesse][get_position().x/raster_Groesse] = 0;
+				this.set_score(this.get_score()+500);
 			}
 			
 		} catch(ArrayIndexOutOfBoundsException exception) {
